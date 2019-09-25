@@ -1,0 +1,25 @@
+/**
+ * Usage:  has-background-color-[colorname]
+ */
+@each $key,$val in $colors{
+	.has-background--color-#{$key} {
+		background-color: #{$val};
+    border-color: #{$val};
+	}
+
+	a.has-background--color-#{$key}:hover {
+		background-color: map-get($colors, gardientColorSecond);
+	}
+
+}
+
+/**
+ * Usage:
+ */
+@mixin heading-font-size($heading...) {
+    @each $i in $heading {
+        #{nth($i, 1)} {
+          font-size: nth($i, 2);
+        }
+    }
+}

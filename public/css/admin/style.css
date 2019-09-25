@@ -1,4 +1,174 @@
+@import url(https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap);@import url(https://fonts.googleapis.com/css?family=Comfortaa:300,400,500&display=swap);/* Config sass */
+
+/* Header */
+
+html,
 body {
-  background-color: #1d2c2e;
+  height: 100%;
 }
+
+:root {
+  margin: 0;
+  padding: 0;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+p {
+  margin-bottom: 20px;
+}
+
+/**
+ * Usage:  has-background-color-[colorname]
+ */
+
+.has-background--color-primaryColor {
+  background-color: #041f1e;
+  border-color: #041f1e;
+}
+
+a.has-background--color-primaryColor:hover {
+  background-color: #f1ab86;
+}
+
+.has-background--color-secondaryColor {
+  background-color: #1e2d2f;
+  border-color: #1e2d2f;
+}
+
+a.has-background--color-secondaryColor:hover {
+  background-color: #f1ab86;
+}
+
+.has-background--color-gardientColorFirst {
+  background-color: #f7dba7;
+  border-color: #f7dba7;
+}
+
+a.has-background--color-gardientColorFirst:hover {
+  background-color: #f1ab86;
+}
+
+.has-background--color-gardientColorSecond {
+  background-color: #f1ab86;
+  border-color: #f1ab86;
+}
+
+a.has-background--color-gardientColorSecond:hover {
+  background-color: #f1ab86;
+}
+
+.has-background--color-extraColor {
+  background-color: #c57b57;
+  border-color: #c57b57;
+}
+
+a.has-background--color-extraColor:hover {
+  background-color: #f1ab86;
+}
+
+/**
+ * Usage:
+ */
+
+/* font & color setup */
+
+/* For headings and titles */
+
+/* For regular fonts */
+
+html,
+body,
+label,
+input,
+code,
+blockquote,
+figcaption {
+  font-family: "Comfortaa", sans-serif;
+  font-size: calc(1em + 1.5vw);
+  display: block;
+}
+
+a {
+  font-size: 0.2em;
+  color: #041f1e;
+  display: block;
+}
+
+a:hover {
+  color: #041f1e;
+}
+
+span,
+p {
+  font-size: 0.25em;
+  color: #f1ab86;
+  display: block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-family: "Abril Fatface", cursive;
+  background: linear-gradient(to bottom, #f7dba7 0%, #f1ab86 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px;
+}
+
+h1 {
+  font-size: 1.2em;
+}
+
+h2 {
+  font-size: 0.8em;
+}
+
+h3 {
+  font-size: 0.5em;
+}
+
+.text {
+  margin-bottom: 15px .text --special;
+}
+
+.col-md-3.border--right::after {
+  border-right: 1px solid #f7dba7;
+  content: " ";
+  position: absolute;
+  right: 0;
+  display: block;
+  top: -40px;
+  height: 170%;
+  right: 63px;
+}
+
+/* Components */
+
+.branding__img--130 {
+  width: 130px;
+  height: 130px;
+}
+
+.footer {
+  position: absolute;
+  width: 100%;
+  bottom: 0;
+  padding: 0 20px;
+}
+
+.footer--floating .branding {
+  float: right;
+}
+
+a.link.link--active {
+  padding: 10px;
+}
+
+/* Pages */
 

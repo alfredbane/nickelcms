@@ -1,0 +1,16 @@
+.text {
+  margin-bottom: 15px
+  &--special {
+  }
+}
+
+.col-md-3.border--right::after {
+    border-right: 1px solid map-get($colors, gardientColorFirst);
+    content: " ";
+    position: absolute;
+    right: 0;
+    display: block;
+    top: -40px;
+    height: 170%;
+    right: 63px;
+}

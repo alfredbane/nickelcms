@@ -1,3 +1,16 @@
-body{
-  background-color: #1d2c2e;
-}
+/* Config sass */
+@import "config/variables";
+
+@import "config/reset";
+@import "config/mixins";
+
+/* font & color setup */
+@import "base/typography";
+@import "base/common";
+
+/* Components */
+@import "components/image";
+@import "components/footer";
+@import "components/button";
+
+/* Pages */
