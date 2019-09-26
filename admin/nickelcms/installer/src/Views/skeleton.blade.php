@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>nickel1.0</title>
+    <title>@yield('pagetitle')</title>
 
     <!-- Bootstrap package CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css"
@@ -9,6 +9,9 @@
 
     <!-- Main style css -->
     <link type="text/css" rel="stylesheet" href="css/admin/style.css">
+
+    <!-- Font Awesome Version 5  -->
+    <script src="https://kit.fontawesome.com/8d0ad07784.js" crossorigin="anonymous"></script>
 
 </head>
 <body class="has-background--color-secondaryColor">

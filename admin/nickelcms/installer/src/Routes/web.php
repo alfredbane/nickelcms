@@ -10,4 +10,6 @@ Route::group(['namespace' => '\NickelCms\Installer\Controllers'], function() {
     //Get installer but check if not already installed.
     Route::get('/installer',['uses' => 'InstallationController@index'])->name('cms.installer');
 
+    Route::get('/requirements', ['uses' => 'RequirementCheckController@requirements'])->name('cms.requirements');
+
 });

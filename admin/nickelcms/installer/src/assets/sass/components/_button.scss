@@ -1,3 +1,25 @@
-a.link.link--active {
+/* Buttons as links */
+.link {
     padding: 10px;
+    border-radius: 3px;
+    font-size: 0.26em;
+    display: block;
+    -webkit-transition: all 0.5s ease;
+    -moz-transition: all 0.5s ease;
+    -o-transition: all 0.5s ease;
+    transition: all 0.5s ease;
+    .link__text {
+      cursor: pointer;
+      font-size: 18px;
+      display: inline;
+    }
+    .link__icon {
+      margin-left: 5px;
+    }
+}
+
+.btn {
+  &--medium {
+    padding: 10px 25px;
+  }
 }

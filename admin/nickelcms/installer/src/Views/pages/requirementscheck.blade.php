@@ -1,6 +1,11 @@
 @extends('nickelcms::skeleton')
 
+@section('pagetitle')
+  {{ trans("System Requirements") }}
+@endsection
+
 @section('content')
+{{ print_r($requirements) }}
 <div class="container h-100">
   <div class="row h-100 justify-content-center align-items-center">
     <div class="col-md-3 border--right">
@@ -11,10 +16,7 @@
     <div class="col-md-5">
       <div class="entry-text">
         <h3>Howdy Artisan ! </h3>
-        <p class="text text--special"> Introducing NICKEL 1.0 , an open source laravel CMS. Crafted just for your upcoming creation.  </p>
-        <a class="link link--active btn--medium has-background--color-gardientColorFirst float--left" href="{{ route('cms.requirements') }}">
-          <label class="link__text">Let's install.</label> <i class="link__icon fas fa-location-arrow"></i>
-        </a>
+        <p class="text text--special"> Will check system requirements here.  </p>
       </div>
     </div>
   </div>

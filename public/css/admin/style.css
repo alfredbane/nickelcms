@@ -148,6 +148,10 @@ h3 {
   right: 63px;
 }
 
+.float--left {
+  float: left;
+}
+
 /* Components */
 
 .branding__img--130 {
@@ -166,8 +170,28 @@ h3 {
   float: right;
 }
 
-a.link.link--active {
+/* Buttons as links */
+
+.link {
   padding: 10px;
+  border-radius: 3px;
+  font-size: 0.26em;
+  display: block;
+  transition: all 0.5s ease;
+}
+
+.link .link__text {
+  cursor: pointer;
+  font-size: 18px;
+  display: inline;
+}
+
+.link .link__icon {
+  margin-left: 5px;
+}
+
+.btn--medium {
+  padding: 10px 25px;
 }
 
 /* Pages */
