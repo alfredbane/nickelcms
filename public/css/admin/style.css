@@ -29,44 +29,24 @@ p {
   border-color: #041f1e;
 }
 
-a.has-background--color-primaryColor:hover {
-  background-color: #f1ab86;
-}
-
 .has-background--color-secondaryColor {
   background-color: #1e2d2f;
   border-color: #1e2d2f;
 }
 
-a.has-background--color-secondaryColor:hover {
-  background-color: #f1ab86;
-}
-
-.has-background--color-gardientColorFirst {
+.has-background--color-gradientColorFirst {
   background-color: #f7dba7;
   border-color: #f7dba7;
 }
 
-a.has-background--color-gardientColorFirst:hover {
-  background-color: #f1ab86;
-}
-
-.has-background--color-gardientColorSecond {
+.has-background--color-gradientColorSecond {
   background-color: #f1ab86;
   border-color: #f1ab86;
-}
-
-a.has-background--color-gardientColorSecond:hover {
-  background-color: #f1ab86;
 }
 
 .has-background--color-extraColor {
   background-color: #c57b57;
   border-color: #c57b57;
-}
-
-a.has-background--color-extraColor:hover {
-  background-color: #f1ab86;
 }
 
 /**
@@ -80,14 +60,21 @@ a.has-background--color-extraColor:hover {
 /* For regular fonts */
 
 html,
-body,
+body {
+  font-family: "Comfortaa", sans-serif;
+  font-size: calc(1em + 1.5vw);
+  color: #f7dba7;
+}
+
 label,
 input,
 code,
+small,
+li,
 blockquote,
 figcaption {
   font-family: "Comfortaa", sans-serif;
-  font-size: calc(1em + 1.5vw);
+  font-size: 0.25em;
   display: block;
 }
 
@@ -101,10 +88,14 @@ a:hover {
   color: #041f1e;
 }
 
+.link {
+  font-size: 18px;
+  color: inherit;
+}
+
 span,
 p {
   font-size: 0.25em;
-  color: #f1ab86;
   display: block;
 }
 
@@ -123,14 +114,22 @@ h6 {
 
 h1 {
   font-size: 1.2em;
+  line-height: 20px;
 }
 
 h2 {
-  font-size: 0.8em;
+  font-size: 0.7em;
+  line-height: 20px;
 }
 
 h3 {
-  font-size: 0.5em;
+  font-size: 0.4em;
+  line-height: 40px;
+}
+
+h4 {
+  font-size: 0.3em;
+  line-height: 30px;
 }
 
 .text {
@@ -138,7 +137,7 @@ h3 {
 }
 
 .col-md-3.border--right::after {
-  border-right: 1px solid #f7dba7;
+  border-right: 1px solid;
   content: " ";
   position: absolute;
   right: 0;
@@ -148,15 +147,137 @@ h3 {
   right: 63px;
 }
 
-.float--left {
-  float: left;
+.link {
+  transition: all 0.5s ease;
+}
+
+.link--inline {
+  display: inline;
+}
+
+.link--highlighted {
+  color: #041f1e;
+  padding: 5px;
+}
+
+.content {
+  display: inline-block;
+  width: 100%;
+  padding: 8px 14px;
+}
+
+li:nth-child(odd) .content {
+  background-color: #172325;
+}
+
+.installer-block {
+  max-width: 600px;
+  background-color: #131f21;
+  padding: 20px;
 }
 
 /* Components */
 
-.branding__img--130 {
-  width: 130px;
-  height: 130px;
+/* Buttons as links */
+
+.btn {
+  padding: 10px;
+  border-radius: 3px;
+  font-size: 0.26em;
+  display: block;
+  transition: all 0.5s ease;
+  font-size: 20px;
+}
+
+.btn__text {
+  cursor: pointer;
+  font-size: 18px;
+  display: inline;
+}
+
+.btn__icon {
+  margin-left: 5px;
+}
+
+.btn--medium {
+  padding: 10px 25px;
+}
+
+.switch-wrap {
+  cursor: pointer;
+  background: #041f1e;
+  padding: 5px;
+  width: 53px;
+  height: 31.5px;
+  border-radius: 15.75px;
+  margin-bottom: 0;
+}
+
+.switch-wrap input {
+  position: absolute;
+  opacity: 0;
+  width: 0;
+  height: 0;
+}
+
+.switch {
+  height: 100%;
+  display: grid;
+  grid-template-columns: 0fr 1fr 1fr;
+  transition: 0.2s;
+}
+
+.switch::after {
+  content: "";
+  border-radius: 50%;
+  background: #ccc;
+  grid-column: 2;
+  transition: background 0.2s;
+}
+
+input:checked + .switch {
+  grid-template-columns: 1fr 1fr 0fr;
+}
+
+input:checked + .switch::after {
+  background-color: #52cf71;
+}
+
+.infocard__header {
+  padding: 4px;
+  border-bottom: 1px solid;
+  display: inline-block;
+  width: 100%;
+}
+
+.infocard__header .infocard__title {
+  float: left;
+  display: inline-block;
+}
+
+.infocard__header .infocard__title small {
+  float: right;
+  margin-left: 10px;
+}
+
+.infocard__header .infocard__title h4 {
+  float: left;
+}
+
+.infocard__header .infocard__info {
+  float: right;
+  display: inline-block;
+}
+
+.infocard__item {
+  font-size: 20px;
+}
+
+.infocard__status i {
+  display: block;
+  padding: 8px;
+  margin-right: 6px;
+  color: #d67070;
 }
 
 .footer {
@@ -170,28 +291,14 @@ h3 {
   float: right;
 }
 
-/* Buttons as links */
-
-.link {
-  padding: 10px;
-  border-radius: 3px;
-  font-size: 0.26em;
-  display: block;
-  transition: all 0.5s ease;
+.branding__img--130 {
+  width: 130px;
+  height: 130px;
 }
 
-.link .link__text {
-  cursor: pointer;
-  font-size: 18px;
-  display: inline;
-}
-
-.link .link__icon {
-  margin-left: 5px;
-}
-
-.btn--medium {
-  padding: 10px 25px;
+.list {
+  padding: 0;
+  margin-bottom: 10px;
 }
 
 /* Pages */

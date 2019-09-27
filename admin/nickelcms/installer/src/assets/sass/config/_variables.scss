@@ -14,10 +14,14 @@ $default-text-size: 0.25em;
 $colors:(
 primaryColor: #041f1e,
 secondaryColor: #1e2d2f,
-gardientColorFirst: #f7dba7,
-gardientColorSecond: #f1ab86,
+gradientColorFirst: #f7dba7,
+gradientColorSecond: #f1ab86,
 extraColor: #c57b57,
 );
 
 /* Header */
 $header-height: 40px;
+
+$width: 53px;
+$padding: 5px;
+$height: $width / 2 + $padding;

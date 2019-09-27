@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
     <title>@yield('pagetitle')</title>
 
@@ -14,6 +15,7 @@
     <script src="https://kit.fontawesome.com/8d0ad07784.js" crossorigin="anonymous"></script>
 
 </head>
+
 <body class="has-background--color-secondaryColor">
 
     <div class="wrapper h-100">

@@ -20,6 +20,7 @@
     @each $i in $heading {
         #{nth($i, 1)} {
           font-size: nth($i, 2);
+					line-height: nth($i, 3);
         }
     }
 }

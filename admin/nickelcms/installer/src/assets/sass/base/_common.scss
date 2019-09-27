@@ -1,3 +1,4 @@
+
 .text {
   margin-bottom: 15px
   &--special {
@@ -15,6 +16,35 @@
     right: 63px;
 }
 
-.float--left {
-  float: left;
+.link {
+  -webkit-transition: all 0.5s ease;
+  -moz-transition: all 0.5s ease;
+  -o-transition: all 0.5s ease;
+  transition: all 0.5s ease;
+  &--inline {
+    display: inline;
+  }
+
+  &--highlighted {
+    color: map-get($colors, primaryColor);
+    padding: 5px;
+  }
+
+}
+
+.content {
+  display: inline-block;
+  width: 100%;
+  padding: 8px 14px;
+}
+
+
+li:nth-child(odd) .content {
+  background-color: #172325;
+}
+
+.installer-block {
+  max-width: 600px;
+  background-color: #131f21;
+  padding: 20px;
 }
