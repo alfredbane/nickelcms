@@ -5,6 +5,7 @@
 @endsection
 
 @section('content')
+
 <div class="container h-100">
   <div class="row h-100 justify-content-center align-items-center">
     <div class="installer-block">
@@ -40,7 +41,7 @@
           </section>
 
           <section class="infocard__body">
-            <ul class="list">
+            <ul class="list list--type-column">
               @foreach($requirements['requirements'][$type] as $extention => $enabled)
                   <li class="list__item {{ $enabled ? 'success' : 'error' }}">
                     <div class="content">
@@ -61,6 +62,13 @@
           </section>
         </div>
         @endforeach
+
+        @if(!isset($requirements['errors']))
+            <a href="{{ route('cms.permissions') }}" class="link has-background--color-gradientColorSecond btn btn-solid">
+              <label class="btn__text">Everything looks fine here. Go ahead.</label> <i class="btn__icon fas fa-long-arrow-alt-right"></i>
+            </a>
+        @endif
+
       </div>
     </div>
   </div>

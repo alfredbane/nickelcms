@@ -166,8 +166,8 @@ h4 {
   padding: 8px 14px;
 }
 
-li:nth-child(odd) .content {
-  background-color: #172325;
+li .content {
+  background-color: #1c3438;
 }
 
 .installer-block {
@@ -187,6 +187,7 @@ li:nth-child(odd) .content {
   display: block;
   transition: all 0.5s ease;
   font-size: 20px;
+  color: #041f1e;
 }
 
 .btn__text {
@@ -298,6 +299,39 @@ input:checked + .switch::after {
 
 .list {
   padding: 0;
+  margin-bottom: 10px;
+}
+
+.list--type-column {
+  -moz-columns: 2;
+       columns: 2;
+  -moz-column-gap: 6px;
+       column-gap: 6px;
+}
+
+.list.list--type-column .list__text {
+  width: 186px;
+  display: block;
+}
+
+.list.list--type-column .list__text i.fa-folder-open {
+  display: block;
+  margin-bottom: 10px;
+}
+
+.form-control {
+  font-size: 15px;
+  padding: 15px;
+  height: 100%;
+  border-radius: 3px;
+  background: transparent;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+form label {
   margin-bottom: 10px;
 }
 

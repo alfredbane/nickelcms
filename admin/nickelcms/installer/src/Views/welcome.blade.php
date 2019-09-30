@@ -12,7 +12,7 @@
       <div class="entry-text">
         <h3>Howdy Artisan ! </h3>
         <p class="text text--special"> Introducing NICKEL 1.0 , an open source laravel CMS. Crafted just for your upcoming creation.  </p>
-        <a class="btn btn--active btn--medium has-background--color-gardientColorFirst float--left" href="{{ route('cms.requirements') }}">
+        <a class="btn btn--active btn--medium has-background--color-gradientColorFirst float--left" href="{{ route('cms.requirements') }}">
           <label class="btn__text">Let's install.</label> <i class="btn__icon fas fa-location-arrow"></i>
         </a>
       </div>
