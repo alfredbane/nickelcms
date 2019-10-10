@@ -10,9 +10,7 @@ class InstallationServiceProvider extends ServiceProvider
 {
 
     protected $listen = [
-      'NickelCms\Installer\Events\DbDetailsUpdated' => [
-        'NickelCms\Installer\Listeners\MigrateTablesToDb'
-      ]
+      
     ];
 
     /**

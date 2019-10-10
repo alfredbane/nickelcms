@@ -18,6 +18,9 @@ class EventServiceProvider extends ServiceProvider
         Registered::class => [
             SendEmailVerificationNotification::class,
         ],
+        'NickelCms\Installer\Events\DbDetailsUpdated' => [
+          'NickelCms\Installer\Listeners\MigrateTablesToDb'
+        ]
 
     ];
 
