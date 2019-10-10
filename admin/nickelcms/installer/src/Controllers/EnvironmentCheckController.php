@@ -6,6 +6,7 @@ use Illuminate\Routing\Controller;
 use Illuminate\Http\Request;
 
 use NickelCms\Installer\Helpers\EnvironmentSetupHelper;
+use NickelCms\Installer\Events\DbDetailsUpdated;
 
 class EnvironmentCheckController extends Controller
 {
@@ -38,7 +39,11 @@ class EnvironmentCheckController extends Controller
    */
   public function update(Request $request) {
 
-    return $this->envsetuphelper->updateAndSaveEnv($request);
+    $this->envsetuphelper->updateAndSaveEnv($request);
+
+    event(new DbDetailsUpdated());
+
+    return \Redirect::to('/setupdatabase')->with('This is what happens');
 
   }
 

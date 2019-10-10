@@ -8,6 +8,13 @@ use NickelCms\Installer\Middlewares\CheckInstallation;
 
 class InstallationServiceProvider extends ServiceProvider
 {
+
+    protected $listen = [
+      'NickelCms\Installer\Events\DbDetailsUpdated' => [
+        'NickelCms\Installer\Listeners\MigrateTablesToDb'
+      ]
+    ];
+
     /**
      * Register services.
      *

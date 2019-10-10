@@ -100,16 +100,27 @@ class EnvironmentSetupHelper {
       $db_connection_9802 = mysqli_connect($request->db_host, $request->db_user,
       $request->db_passwrd, $request->db_name);
 
-      $notification = array(
-        'message' => 'Database details are working fine.',
-        'alert-type' => 'success'
-      );
+      if($db_connection_9802) {
 
-      file_put_contents($this->envPath, $envData);
+        file_put_contents($this->envPath, $envData);
 
-      \Artisan::call('migrate', array('--force' => true));
+      }
 
-      return redirect()->back()->with($notification);
+      // // Reload the cached config
+      // if (file_exists(\App::getCachedConfigPath())) {
+      //     \Artisan::call("config:cache");
+      // }
+      //
+      // \Artisan::call('migrate', array('--force' => true));
+      //
+      // $notification = array(
+      //   'message' => 'Database details are working fine.',
+      //   'alert-type' => 'success'
+      // );
+      //
+      // return redirect()->back()->with($notification);
+
+      return true;
 
     } catch (Exception $e) {
 
