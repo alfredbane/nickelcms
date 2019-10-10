@@ -35,6 +35,9 @@ class InstallationServiceProvider extends ServiceProvider
         // Load views from package.
         $this->loadViewsFrom(__DIR__.'/Views', 'nickelcms');
 
+        //Load and run Migrations
+        $this->loadMigrationsFrom(__DIR__.'/Migrations');
+
     }
 
     /**

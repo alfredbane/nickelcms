@@ -38,9 +38,8 @@ class EnvironmentCheckController extends Controller
    */
   public function update(Request $request) {
 
-    $this->envsetuphelper->updateAndSaveEnv($request);
-    return redirect()->back()->with('message', 'IT WORKS!');
-    
+    return $this->envsetuphelper->updateAndSaveEnv($request);
+
   }
 
 
