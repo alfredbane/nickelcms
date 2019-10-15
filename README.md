@@ -10,9 +10,11 @@
 <a href="https://packagist.org/packages/laravel/framework"><img src="https://poser.pugx.org/laravel/framework/license.svg" alt="License"></a>
 </p>
 
-## Latest changes v 1.0.1
-<p align="center"> Backend changed from mysql to mongodb. </p>
-<p align="center"> Added validation to DB details form . </p>
+### Latest changes v 1.0.1
+<ul>
+<li> Backend changed from mysql to mongodb. </li>
+<li> Added validation to DB details form . </li>
+</ul>
 
 
 ## Learning Laravel
