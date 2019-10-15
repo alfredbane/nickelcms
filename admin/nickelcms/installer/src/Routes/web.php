@@ -11,7 +11,7 @@ Route::group(['namespace' => '\NickelCms\Installer\Controllers'], function() {
       //Get installer but check if not already installed.
       Route::get('/installer',['uses' => 'InstallationController@index'])->name('cms.installer');
 
-      // Check if system has the dependencies.
+      // Check if system has thlaravel redirect to url dependencies.
       Route::get('/requirements', ['uses' => 'RequirementCheckController@requirements'])->name('cms.requirements');
 
       // Check if system has the dependencies.
@@ -23,9 +23,12 @@ Route::group(['namespace' => '\NickelCms\Installer\Controllers'], function() {
       // Prepare system environment.
       Route::post('/updatedetails', ['uses' => 'EnvironmentCheckController@update'])->name('cms.environment.update');
 
-      Route::get('/setupdatabase', function(){
-        echo "OOO hellooo chal geya";
-      })->name('cms.environment');
+      // Create first user .
+      Route::get('/createauser', ['uses' => 'CreateNewUserController@index'])->name('cms.createuser');
+
+      // Finish installation.
+      Route::get('/finalsetup', ['uses' => 'FinnishInstallationController@index'])->name('cms.finalizeinstall');
+
 
 
     });

@@ -27,7 +27,26 @@ class MigrateTablesToDb
      */
     public function handle(DbDetailsUpdated $event)
     {
-        // \Artisan::call('migrate', array('--force' => true));
-        dd("Fitush");
+
+      try {
+
+        if (file_exists(\App::getCachedConfigPath())) {
+            \Artisan::call("config:cache");
+            \Artisan::call("config:clear");
+        }
+
+        \Artisan::call('migrate', array('--force' => true));
+
+      } catch(Exception $e) {
+
+        $notification = array(
+          'message' => 'Database details are working fine.',
+          'alert-type' => 'success'
+        );
+
+        return redirect()->back()->with($notification);
+
+      }
+
     }
 }

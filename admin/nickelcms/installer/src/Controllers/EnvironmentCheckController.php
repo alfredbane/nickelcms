@@ -3,7 +3,7 @@
 namespace NickelCms\Installer\Controllers;
 
 use Illuminate\Routing\Controller;
-use Illuminate\Http\Request;
+use NickelCms\Installer\Requests\DatabaseStoreRequest;
 
 use NickelCms\Installer\Helpers\EnvironmentSetupHelper;
 use NickelCms\Installer\Events\DbDetailsUpdated;
@@ -37,13 +37,13 @@ class EnvironmentCheckController extends Controller
    *
    * @return \Illuminate\View\View
    */
-  public function update(Request $request) {
+  public function update(DatabaseStoreRequest $request) {
 
     $this->envsetuphelper->updateAndSaveEnv($request);
 
     event(new DbDetailsUpdated());
 
-    return \Redirect::to('/setupdatabase')->with('This is what happens');
+    return redirect()->route('cms.createuser');
 
   }
 

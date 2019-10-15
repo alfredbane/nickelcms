@@ -57,11 +57,12 @@ class EnvironmentSetupHelper {
     'APP_ENV=local'."\n".
     'APP_KEY=base64:SZ2HujojlvcIooHiDcajM38rTKaCgIZoAAkq13Y8O5w='."\n".
     'APP_DEBUG=true'."\n".
-    'APP_URL=http://localhost'."\n\n".
+    'APP_LOG_LEVEL=debug'."\n".
+    'APP_URL=http://localhost/nickelcms'."\n\n".
     'LOG_CHANNEL=stack'."\n\n".
-    'DB_CONNECTION=mysql'."\n".
+    'DB_CONNECTION=mongodb'."\n".
     'DB_HOST='.$request->db_host."\n".
-    'DB_PORT=3306'."\n".
+    'DB_PORT=27017'."\n".
     'DB_DATABASE='.$request->db_name."\n".
     'DB_USERNAME='.$request->db_user."\n".
     'DB_PASSWORD='.$request->db_passwrd."\n\n".
@@ -96,31 +97,17 @@ class EnvironmentSetupHelper {
 
     try {
 
-      // Create connection
-      $db_connection_9802 = mysqli_connect($request->db_host, $request->db_user,
-      $request->db_passwrd, $request->db_name);
+      try {
 
-      if($db_connection_9802) {
+        DB::connection()->getMongoClient()->listDatabases();
 
-        file_put_contents($this->envPath, $envData);
+      } catch (Exception $e) {
+
+        echo $e->getMessage();
 
       }
 
-      // // Reload the cached config
-      // if (file_exists(\App::getCachedConfigPath())) {
-      //     \Artisan::call("config:cache");
-      // }
-      //
-      // \Artisan::call('migrate', array('--force' => true));
-      //
-      // $notification = array(
-      //   'message' => 'Database details are working fine.',
-      //   'alert-type' => 'success'
-      // );
-      //
-      // return redirect()->back()->with($notification);
-
-      return true;
+      file_put_contents($this->envPath, $envData);
 
     } catch (Exception $e) {
 

@@ -29,6 +29,13 @@
                 <div class="form-group">
                   <label for="app_name">Database Name</label>
                   <input type="text" class="form-control" id="db_name" name="db_name" aria-describedby="db_name" placeholder="Database Name">
+
+                  @error('db_name')
+                    <span class="invalid-feedback active" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+
                 </div>
               </div>
             </div>
@@ -37,12 +44,26 @@
                 <div class="form-group">
                   <label for="exampleInputEmail1">Database User</label>
                   <input type="text" class="form-control" id="db_user" name="db_user" aria-describedby="emailHelp" placeholder="Database User">
+
+                  @error('db_user')
+                    <span class="invalid-feedback active" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
                   <label for="app_name">Database Password</label>
-                  <input type="text" class="form-control" id="db_passwrd" name="db_passwrd" aria-describedby="db_name" placeholder="db_passwrd">
+                  <input type="text" class="form-control" id="db_passwrd" name="db_passwrd" aria-describedby="db_name" placeholder="Database password">
+
+                  @error('db_passwrd')
+                    <span class="invalid-feedback active" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+
                 </div>
               </div>
             </div>
