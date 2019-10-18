@@ -5,6 +5,7 @@ namespace NickelCms\Installer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 use NickelCms\Installer\Middlewares\CheckInstallation;
+use NickelCms\Installer\Middlewares\CheckDatabaseInstallation;
 
 class InstallationServiceProvider extends ServiceProvider
 {
@@ -37,9 +38,12 @@ class InstallationServiceProvider extends ServiceProvider
         // Add a middleware to check cms installation.
         $router->aliasMiddleware('checkinstall', CheckInstallation::class);
 
+        // Add a middleware to check cms installation.
+        $router->aliasMiddleware('checkdbinstall', CheckDatabaseInstallation::class);
+
         // Load views from package.
         $this->loadViewsFrom(__DIR__.'/Views', 'nickelcms');
-        
+
 
     }
 

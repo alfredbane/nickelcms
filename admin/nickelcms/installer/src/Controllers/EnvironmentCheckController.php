@@ -20,7 +20,11 @@ class EnvironmentCheckController extends Controller
    * @param EnvironmentSetupHelper $envsetuphelper
    */
   public function __construct(EnvironmentSetupHelper $envsetuphelper) {
+
+    $this->middleware("checkdbinstall");
+
     $this->envsetuphelper = $envsetuphelper;
+
   }
 
   /**

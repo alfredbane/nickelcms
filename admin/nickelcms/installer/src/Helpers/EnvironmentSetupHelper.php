@@ -3,7 +3,7 @@
 namespace NickelCms\Installer\Helpers;
 
 use Exception;
-use DB;
+use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class EnvironmentSetupHelper {
@@ -17,6 +17,11 @@ class EnvironmentSetupHelper {
    * @var string
    */
   private $envExamplePath;
+
+  /**
+   * @var boolean
+   */
+  private $databaseExists;
 
 
   public function __construct()
@@ -97,19 +102,32 @@ class EnvironmentSetupHelper {
 
     try {
 
-      try {
+        $mongo = new \MongoDB\Client("mongodb://127.0.0.1:27017/");
+        $databaseList = $mongo->listDatabases();
 
-        DB::connection()->getMongoClient()->listDatabases();
+        foreach ($databaseList as $database) {
+          if( $database->getName() == $request->db_name ) {
+            $this->databaseExists = true;
+          }
+        }
 
-      } catch (Exception $e) {
+        if( $this->databaseExists ) {
 
-        echo $e->getMessage();
+          file_put_contents($this->envPath, $envData);
+          
+        } else {
 
-      }
+          $notification = array(
+            'message' => 'Database does not exists',
+            'alert-type' => 'error'
+          );
 
-      file_put_contents($this->envPath, $envData);
+          return redirect()->back()->with($notification)->send();
+        }
 
-    } catch (Exception $e) {
+
+
+    } catch (\MongoDB\Driver\Exception\ConnectionTimeoutException $mongoException) {
 
       $notification = array(
         'message' => $e->getMessage(),

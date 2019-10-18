@@ -25,9 +25,9 @@ class CheckInstallation
     }
 
     /**
-     * If application is already installed.
+     * Check if after installation file exists.
      *
-     * @return bool
+     * @return string
      */
     public function cmsInstanceExists()
     {
