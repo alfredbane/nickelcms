@@ -16,11 +16,18 @@ class CheckInstallation
     public function handle($request, Closure $next)
     {
 
-      if( !$this->cmsInstanceExists() ){
-        return redirect()->route('cms.installer');
+      if(strpos(\Request::route()->getName(), 'cms.') === 0) {
+        return ( !$this->cmsInstanceExists() ) ? $next($request)
+        : redirect()->route('home')->send();
+      } else {
+        return ( $this->cmsInstanceExists() ) ? $next($request)
+        : redirect()->route('cms.installer');
+
       }
 
-      return $next($request);
+
+
+
 
     }
 

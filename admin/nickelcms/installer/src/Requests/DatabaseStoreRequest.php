@@ -24,10 +24,12 @@ class DatabaseStoreRequest extends FormRequest
     public function rules()
     {
         return [
-            'db_name' => 'required|string|max:50',
-            'db_user' => '',
-            'db_passwrd' => '',
-
+          'db_name' => 'required|string|max:50',
+          'db_user' => 'string|max:50|nullable',
+          'db_passwrd' => '',
+          'db_host' => 'required|string',
+          'db_host_port' => 'integer|nullable',
+          'db_prefix' =>'string'
         ];
     }
 
@@ -40,6 +42,7 @@ class DatabaseStoreRequest extends FormRequest
     {
         return [
             'db_name.required' => 'DB name is required!',
+            'db_host.required' => 'DB host is required!',
         ];
     }
 }

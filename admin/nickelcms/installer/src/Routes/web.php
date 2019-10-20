@@ -8,6 +8,7 @@ Route::group(['namespace' => '\NickelCms\Installer\Controllers'], function() {
     Route::get('/',['uses'=>'loadSiteController@index'])->name('home');
 
     Route::group(['middleware' => ['web']], function() {
+
       //Get installer but check if not already installed.
       Route::get('/installer',['uses' => 'InstallationController@index'])->name('cms.installer');
 
@@ -24,12 +25,13 @@ Route::group(['namespace' => '\NickelCms\Installer\Controllers'], function() {
       Route::post('/updatedetails', ['uses' => 'EnvironmentCheckController@update'])->name('cms.environment.update');
 
       // Create first user .
-      Route::get('/createauser', ['uses' => 'CreateNewUserController@index'])->name('cms.createuser');
+      Route::get('/createauser', ['uses' => 'CreateNewUserController@index'])->name('cms.environment.createuser');
+
+      // Store first user .
+      Route::post('/storeuser', ['uses' => 'CreateNewUserController@store'])->name('cms.environment.storeuser');
 
       // Finish installation.
       Route::get('/finalsetup', ['uses' => 'FinnishInstallationController@index'])->name('cms.finalizeinstall');
-
-
 
     });
 });

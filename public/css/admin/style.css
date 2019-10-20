@@ -298,6 +298,26 @@ input:checked + .switch::after {
   float: right;
 }
 
+.form-control {
+  font-size: 15px;
+  padding: 15px;
+  height: 100%;
+  border-radius: 3px;
+  background: transparent;
+}
+
+.form-group {
+  margin-bottom: 25px;
+}
+
+form label {
+  margin-bottom: 10px;
+}
+
+.toast {
+  font-size: 20px;
+}
+
 .branding__img--130 {
   width: 130px;
   height: 130px;
@@ -322,22 +342,6 @@ input:checked + .switch::after {
 
 .list.list--type-column .list__text i.fa-folder-open {
   display: block;
-  margin-bottom: 10px;
-}
-
-.form-control {
-  font-size: 15px;
-  padding: 15px;
-  height: 100%;
-  border-radius: 3px;
-  background: transparent;
-}
-
-.form-group {
-  margin-bottom: 25px;
-}
-
-form label {
   margin-bottom: 10px;
 }
 

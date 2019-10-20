@@ -15,7 +15,47 @@
       <div class="entry-text">
         <h3> STEP 4 : Send in the troops. </h3>
         <p class="text text--special"> Create a user to unleash the kraken. </p>
+        <section class="infocard__body">
+          <form method="post" action="{{ route('cms.environment.storeuser') }}">
+            @csrf
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="username">Username</label>
+                  <input type="text" class="form-control" id="username" name="username" aria-describedby="username" placeholder="Username">
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="user_email">Email</label>
+                  <input type="email" class="form-control" id="user_email" name="user_email" aria-describedby="user_email" placeholder="User email">
 
+                  @error('user_email')
+                    <span class="invalid-feedback active" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="password">Password</label>
+                  <input type="text" class="form-control" id="password" name="password" aria-describedby="password" placeholder="Password">
+
+                  @error('password')
+                    <span class="invalid-feedback active" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+
+                </div>
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary has-background--color-gradientColorFirst">Submit</button>
+          </form>
         </section>
       </div>
     </div>

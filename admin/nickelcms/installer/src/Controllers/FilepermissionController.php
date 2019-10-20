@@ -19,6 +19,7 @@ class FilepermissionController extends Controller
    */
   public function __construct(PermissionsCheckHelper $checker)
   {
+      $this->middleware("checkinstall");
       $this->permissions = $checker;
   }
 

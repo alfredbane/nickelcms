@@ -41,6 +41,8 @@
     <script>
 
       $(function () { //ready
+        toastr.options.fadeOut = 6500;
+        toastr.options.positionClass = 'toast-top-right';
 
         @if(Session::has('message'))
           var type = "{{ Session::get('alert-type', 'info') }}";
@@ -62,7 +64,7 @@
                   break;
           }
         @endif
-        
+
       });
 
     </script>

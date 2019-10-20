@@ -21,16 +21,42 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Database Host</label>
-                  <input type="text" class="form-control" id="db_host" name="db_host" aria-describedby="emailHelp" placeholder="Database Host">
+                  <label for="db_host">Database Host</label>
+                  <input type="text" class="form-control" id="db_host" name="db_host" value="{{ old('db_host') ? old('db_host') : '127.0.0.1' }}" aria-describedby="Database Host" placeholder="Database Host">
+                  @error('db_host')
+                    <span class="invalid-feedback active" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
                 </div>
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="app_name">Database Name</label>
-                  <input type="text" class="form-control" id="db_name" name="db_name" aria-describedby="db_name" placeholder="Database Name">
+                  <label for="db_host_port">Database Host Port</label>
+                  <input type="text" class="form-control" id="db_host_port" value="{{ old('db_host_port') ? old('db_host_port') : 27017  }}" name="db_host_port" aria-describedby="Database Host Port" placeholder="Database Port">
+                </div>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="db_name">Database Name</label>
+                  <input type="text" class="form-control" id="db_name" value="{{ old('db_name') }}" name="db_name" aria-describedby="db_name" placeholder="Database Name">
 
                   @error('db_name')
+                    <span class="invalid-feedback active" role="alert">
+                        <strong>{{ $message }}</strong>
+                    </span>
+                  @enderror
+
+                </div>
+              </div>
+              <div class="col-md-6">
+                <div class="form-group">
+                  <label for="db_user">Database User</label>
+                  <input type="text" class="form-control" id="db_user" value="{{ old('db_user') }}" name="db_user" aria-describedby="db_user" placeholder="Database User">
+
+                  @error('db_user')
                     <span class="invalid-feedback active" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -42,10 +68,10 @@
             <div class="row">
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="exampleInputEmail1">Database User</label>
-                  <input type="text" class="form-control" id="db_user" name="db_user" aria-describedby="emailHelp" placeholder="Database User">
+                  <label for="app_name">Database Password</label>
+                  <input type="text" class="form-control" id="db_passwrd" value="" name="db_passwrd" aria-describedby="db_passwrd" placeholder="Database password">
 
-                  @error('db_user')
+                  @error('db_passwrd')
                     <span class="invalid-feedback active" role="alert">
                         <strong>{{ $message }}</strong>
                     </span>
@@ -55,15 +81,8 @@
               </div>
               <div class="col-md-6">
                 <div class="form-group">
-                  <label for="app_name">Database Password</label>
-                  <input type="text" class="form-control" id="db_passwrd" name="db_passwrd" aria-describedby="db_name" placeholder="Database password">
-
-                  @error('db_passwrd')
-                    <span class="invalid-feedback active" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-
+                  <label for="app_name">Database prefix</label>
+                  <input type="text" class="form-control" id="db_prefix" value="{{ old('db_prefix') }}" name="db_prefix" aria-describedby="db_prefix" placeholder="Database prefix">
                 </div>
               </div>
             </div>

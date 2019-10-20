@@ -27,7 +27,7 @@ class CreateUsersTable extends Migration
         ->table('users', function (Blueprint $collection)
         {
             $collection->index('username');
-            $collection->unique('email');
+            $collection->unique('user_email');
             $collection->index('verified_email_at');
             $collection->index('password');
         });

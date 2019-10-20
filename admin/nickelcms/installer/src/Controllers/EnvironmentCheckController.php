@@ -21,8 +21,7 @@ class EnvironmentCheckController extends Controller
    */
   public function __construct(EnvironmentSetupHelper $envsetuphelper) {
 
-    $this->middleware("checkdbinstall");
-
+    $this->middleware("checkinstall");
     $this->envsetuphelper = $envsetuphelper;
 
   }
@@ -39,7 +38,7 @@ class EnvironmentCheckController extends Controller
   /**
    * Update the details in ENV file.
    *
-   * @return \Illuminate\View\View
+   * @return void
    */
   public function update(DatabaseStoreRequest $request) {
 
@@ -47,7 +46,7 @@ class EnvironmentCheckController extends Controller
 
     event(new DbDetailsUpdated());
 
-    return redirect()->route('cms.createuser');
+    return redirect()->route('cms.environment.createuser');
 
   }
 

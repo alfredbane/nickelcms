@@ -3,7 +3,6 @@
 namespace NickelCms\Installer\Helpers;
 
 use Exception;
-use Illuminate\Support\Facades\DB;
 use Illuminate\Http\Request;
 
 class EnvironmentSetupHelper {
@@ -23,8 +22,13 @@ class EnvironmentSetupHelper {
    */
   private $databaseExists;
 
+  /**
+   * @var boolean
+   */
+  private $collectionAlreadyExists;
 
-  public function __construct()
+
+  public function __construct( Request $request )
   {
 
     $this->envPath = base_path('.env');
@@ -35,7 +39,7 @@ class EnvironmentSetupHelper {
   /**
    * Get the content of the .env file.
    *
-   * @return void
+   * @return string
    */
   public function createEnvFromExample()
   {
@@ -50,9 +54,83 @@ class EnvironmentSetupHelper {
   }
 
   /**
+   * Create mongo DB connection.
+   *
+   * @return new MongoDB\Client connection
+   */
+
+  public function mongoConnection ($request) {
+
+    if( !empty($request->db_user) ) {
+
+      $mongoClientAddress = "mongodb://".$request->db_user.':'.$request->db_passwrd.'@'
+      .$request->db_host.':'.$request->db_host_port.'/';
+
+    } else {
+
+      $mongoClientAddress = "mongodb://".$request->db_host.':'.$request->db_host_port.'/';
+
+    }
+
+    return new \MongoDB\Client($mongoClientAddress);
+
+  }
+
+  /**
+   * Check if Requested DB exists.
+   *
+   * @param Illuminate\Http\Request
+   * @return boolean
+   *
+   */
+
+  public function mongoHasDatabase ($request) {
+
+    $mongoConnection = $this->mongoConnection($request) ;
+    $databaseList = $mongoConnection->listDatabases();
+
+    foreach ($databaseList as $database) {
+      if( $database->getName() == $request->db_name ) {
+        return true;
+      }
+    }
+
+    return false;
+
+  }
+
+  /**
+   * Check if Requested DB does not
+   * have preinstalled collections.
+   *
+   * @param Illuminate\Http\Request
+   * @return boolean
+   *
+   */
+
+  public function mongoDatabaseHasCollection ($request) {
+
+    $mongoConnection = $this->mongoConnection($request) ;
+
+    $database = $mongoConnection->selectDatabase($request->db_name);
+
+    $collectionList = $database->listCollections();
+
+    foreach ($collectionList as $item) {
+      if( $item->getName() === 'users' ) {
+        return true;
+      }
+    }
+
+    return false;
+
+  }
+
+
+  /**
    * Edit and save the ENV.
    *
-   * @return void
+   * @return mixed
    */
   public function updateAndSaveEnv(Request $request)
   {
@@ -67,10 +145,11 @@ class EnvironmentSetupHelper {
     'LOG_CHANNEL=stack'."\n\n".
     'DB_CONNECTION=mongodb'."\n".
     'DB_HOST='.$request->db_host."\n".
-    'DB_PORT=27017'."\n".
+    'DB_PORT='.$request->db_host_port."\n".
     'DB_DATABASE='.$request->db_name."\n".
     'DB_USERNAME='.$request->db_user."\n".
-    'DB_PASSWORD='.$request->db_passwrd."\n\n".
+    'DB_PASSWORD='.$request->db_passwrd."\n".
+    'DB_PREFIX='.$request->db_prefix."\n\n".
     'BROADCAST_DRIVER=log'."\n".
     'CACHE_DRIVER=file'."\n".
     'QUEUE_CONNECTION=sync'."\n".
@@ -99,46 +178,36 @@ class EnvironmentSetupHelper {
     if(!$this->createEnvFromExample()) {
       return false;
     }
+    
+    if( $this->mongoHasDatabase($request) ) {
 
-    try {
+      if( !$this->mongoDatabaseHasCollection($request) ) {
 
-        $mongo = new \MongoDB\Client("mongodb://127.0.0.1:27017/");
-        $databaseList = $mongo->listDatabases();
+        file_put_contents($this->envPath, $envData);
 
-        foreach ($databaseList as $database) {
-          if( $database->getName() == $request->db_name ) {
-            $this->databaseExists = true;
-          }
-        }
+      } else {
 
-        if( $this->databaseExists ) {
+        $notification = array(
+          'message' => 'Looks like collections already exists. Clean database and start again',
+          'alert-type' => 'error'
+        );
 
-          file_put_contents($this->envPath, $envData);
-          
-        } else {
+        return redirect()->back()->with($notification)->send();
 
-          $notification = array(
-            'message' => 'Database does not exists',
-            'alert-type' => 'error'
-          );
+      }
 
-          return redirect()->back()->with($notification)->send();
-        }
-
-
-
-    } catch (\MongoDB\Driver\Exception\ConnectionTimeoutException $mongoException) {
+    } else {
 
       $notification = array(
-        'message' => $e->getMessage(),
+        'message' => 'Database does not exists. Please try again with different Database OR create a new one.',
         'alert-type' => 'error'
       );
 
-      return redirect()->back()->with($notification);
-
+      return redirect()->back()->with($notification)->send();
     }
 
     return true;
+
   }
 
 }

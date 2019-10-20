@@ -60,4 +60,8 @@ return [
         'storage/logs/'          => '775',
         'bootstrap/cache/'       => '775',
     ],
+
+    'targetcollection' => 'users',
+
+
 ];

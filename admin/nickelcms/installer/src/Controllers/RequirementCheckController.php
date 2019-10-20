@@ -19,6 +19,7 @@ class RequirementCheckController extends Controller
    */
   public function __construct(RequirementsCheckHelper $checker)
   {
+       $this->middleware("checkinstall");
       $this->requirements = $checker;
   }
   /**
