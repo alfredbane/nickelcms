@@ -35,7 +35,7 @@
             @endforeach
           </ul>
           @if ( ! isset($permissions['errors']))
-            <a href="{{ route('cms.environment') }}" class="link has-background--color-gradientColorSecond btn btn-solid">
+            <a href="{{ route('cms.environment.settings') }}" class="link has-background--color-gradientColorSecond btn btn-solid">
               <label class="btn__text">Engine is roaring. Let's connect to mission control.</label> <i class="btn__icon fas fa-long-arrow-alt-right"></i>
             </a>
           @endif

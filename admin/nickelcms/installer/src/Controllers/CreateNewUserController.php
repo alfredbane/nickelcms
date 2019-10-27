@@ -17,6 +17,7 @@ class CreateNewUserController extends Controller
   public function __construct(FinishInstallationHelper $afterFinishInstall) {
 
     $this->middleware("checkinstall");
+    $this->middleware("checkDbIfUserInstalled");
 
     $this->afterFinishInstall = $afterFinishInstall;
 
@@ -40,10 +41,17 @@ class CreateNewUserController extends Controller
 
     User::create($request->all());
 
-    event(new FinishInstallationEvent());
-    
-    return redirect()->route('cms.installer')
-                    ->with('success','Category created successfully');
+    if ( !$request->session()->has('userCreated') ) {
+      $request->session()->put('userCreated', true);
+    }
+
+    $notification = array(
+      'message' => 'Finishing up installation.',
+      'alert-type' => 'success'
+    );
+
+    return redirect()->route('cms.environment.finalizeinstall')
+                    ->with($notification)->send();
 
   }
 

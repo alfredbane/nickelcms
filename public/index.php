@@ -18,8 +18,6 @@ define('LARAVEL_START', microtime(true));
 define ('CMS_INSTALLED', true);
 //------------------------------------//
 
-
-
 /*
 |--------------------------------------------------------------------------
 | Register The Auto Loader

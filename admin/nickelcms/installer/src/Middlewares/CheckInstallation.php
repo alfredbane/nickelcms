@@ -21,13 +21,9 @@ class CheckInstallation
         : redirect()->route('home')->send();
       } else {
         return ( $this->cmsInstanceExists() ) ? $next($request)
-        : redirect()->route('cms.installer');
+        : redirect()->route('cms.environment.installer');
 
       }
-
-
-
-
 
     }
 
@@ -38,9 +34,16 @@ class CheckInstallation
      */
     public function cmsInstanceExists()
     {
+
+      if( env('DB_DATABASE') === 'laravel' ){
+        return false;
+      }
+
       if( !defined('CMS_INSTALLED') || !CMS_INSTALLED ) {
         return false;
       }
-      return file_exists( storage_path( config('installer.file') ) );
+
+      return file_exists( storage_path( 'app/public/'.config('installer.file') ) );
+
     }
 }

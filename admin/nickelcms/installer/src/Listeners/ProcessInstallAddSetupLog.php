@@ -40,6 +40,5 @@ class ProcessInstallAddSetupLog
 
         $this->finishinstallhelper->add_installation_files();
 
-
     }
 }

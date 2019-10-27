@@ -13,7 +13,7 @@ return [
     |
     */
 
-    'file' => 'installedcmsinfo',
+    'file' => 'installedcmsinfo.php',
 
   /*
    |--------------------------------------------------------------------------
@@ -38,6 +38,7 @@ return [
            'pdo',
            'mbstring',
            'tokenizer',
+           'mongodb',
            'JSON',
            'cURL',
        ],

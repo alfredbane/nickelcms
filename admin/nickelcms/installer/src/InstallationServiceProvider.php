@@ -5,7 +5,8 @@ namespace NickelCms\Installer;
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
 use NickelCms\Installer\Middlewares\CheckInstallation;
-use NickelCms\Installer\Middlewares\CheckDatabaseInstallation;
+use NickelCms\Installer\Middlewares\CheckInstallerDBSession;
+use NickelCms\Installer\Middlewares\CheckInstallerUserAddSession;
 
 class InstallationServiceProvider extends ServiceProvider
 {
@@ -37,6 +38,12 @@ class InstallationServiceProvider extends ServiceProvider
 
         // Add a middleware to check cms installation.
         $router->aliasMiddleware('checkinstall', CheckInstallation::class);
+
+        // Add a middleware to check if current function is already installed.
+        $router->aliasMiddleware('checkDbIfInstalled', CheckInstallerDBSession::class);
+
+        // Add a middleware to check if current function is already installed.
+        $router->aliasMiddleware('checkDbIfUserInstalled', CheckInstallerUserAddSession::class);
 
         // Load views from package.
         $this->loadViewsFrom(__DIR__.'/Views', 'nickelcms');

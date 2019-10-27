@@ -90,21 +90,22 @@ class FinishInstallationHelper {
   public function add_installation_files() {
 
     $installation_indicator_file_name = config('installer.file');
-    $installation_indicator_file_path = storage_path($installation_indicator_file_name);
+    $installation_indicator_file_path = storage_path('/app/public/'.$installation_indicator_file_name);
 
     $indicator_file = fopen($installation_indicator_file_path, 'w') or
     die('Cannot open file:  '.$installation_indicator_file_name);
 
     $fileText =
-    "------------------------------------"."\n".
-    "  IMPORTANT : NICKEL CMS INSTALLER v1.0 "."\n".
-    "------------------------------------"."\n".
-    "This file has been added by nickel cms installer."."\n".
-    "Kindly do not remove the installer in order to keep."."\n".
-    "the cms preserved and working."."\n";
+    "<?php"."\n".
+    "/** ----------------------------------------------"."\n".
+    "*     IMPORTANT : NICKEL CMS INSTALLER v1.0"."\n".
+    "* ----------------------------------------------"."\n".
+    "* This file has been added by nickel cms installer."."\n".
+    "* Kindly do not remove the file in order to keep"."\n".
+    "* the cms preserved and working."."\n"."*/";
 
     fwrite($indicator_file, $fileText);
-    
+
     fclose($indicator_file);
 
   }

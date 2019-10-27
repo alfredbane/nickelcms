@@ -16,7 +16,7 @@
         <h3> STEP 3 : Connect to Mission Control. </h3>
         <p class="text text--special"> Setup connection to databse and mail server. </p>
         <section class="infocard__body">
-          <form method="post" action="{{ route('cms.environment.update') }}">
+          <form method="post" action="{{ route('cms.environment.settings.update') }}">
             @csrf
             <div class="row">
               <div class="col-md-6">

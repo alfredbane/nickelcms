@@ -64,7 +64,7 @@
         @endforeach
 
         @if(!isset($requirements['errors']))
-            <a href="{{ route('cms.permissions') }}" class="link has-background--color-gradientColorSecond btn btn-solid">
+            <a href="{{ route('cms.environment.permissions') }}" class="link has-background--color-gradientColorSecond btn btn-solid">
               <label class="btn__text">Everything looks fine here. Go ahead.</label> <i class="btn__icon fas fa-long-arrow-alt-right"></i>
             </a>
         @endif

@@ -34,7 +34,7 @@ class InstallationController extends Controller
    * @return \Illuminate\View\View
    */
    public function index(){
-     return view('nickelcms::welcome');
+     return view('nickelcms::pages.welcome');
    }
 
 }

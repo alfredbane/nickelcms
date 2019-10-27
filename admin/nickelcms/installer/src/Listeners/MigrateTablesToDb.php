@@ -3,20 +3,24 @@
 namespace NickelCms\Installer\Listeners;
 
 use NickelCms\Installer\Events\DbDetailsUpdated;
+use Illuminate\Http\Request;
 
 use Illuminate\Queue\InteractsWithQueue;
 use Illuminate\Contracts\Queue\ShouldQueue;
 
 class MigrateTablesToDb
 {
+
+    public $request;
+
     /**
      * Create the event listener.
      *
-     * @return void
+     * @param Illuminate\Http\Request
      */
-    public function __construct()
+    public function __construct(Request $request)
     {
-        //
+      $this->request = $request;
     }
 
     /**
@@ -37,6 +41,10 @@ class MigrateTablesToDb
 
         \Artisan::call('migrate', array('--force' => true));
 
+        if ( !$this->request->session()->has('dbInstalled') ) {
+          $this->request->session()->put('dbInstalled', true);
+        }
+        
       } catch(Exception $e) {
 
         $notification = array(
