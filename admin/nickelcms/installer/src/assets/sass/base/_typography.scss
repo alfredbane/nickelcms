@@ -1,0 +1,60 @@
+/* For headings and titles */
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap');
+
+/* For regular fonts */
+@import url('https://fonts.googleapis.com/css?family=Comfortaa:300,400,500&display=swap');
+
+html,
+body {
+  font-family: $default-font-family;
+  font-size: $base-font-size;
+  color: map-get($colors, gradientColorFirst);
+}
+
+label,
+input,
+code,
+small,
+li,
+blockquote,
+figcaption {
+  font-family: $default-font-family;
+  font-size: $default-text-size;
+  display: block;
+}
+
+
+a{
+  font-size: $default-anchor-size;
+  color: map-get($colors, primaryColor);
+  display: block;
+}
+
+a:hover{
+  color: map-get($colors, primaryColor);
+}
+
+.link {
+  font-size : 18px;
+  color: inherit;
+}
+
+span, p{
+  font-size: $default-text-size;
+  color: map-get($colors, gardientColorSecond);
+  display: block;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $title-font-family;
+  background: -webkit-linear-gradient(top, rgb(247, 219, 167) 0%, rgb(241, 171, 134) 100%);
+  background: -o-linear-gradient(top, rgb(247, 219, 167) 0%, rgb(241, 171, 134) 100%);
+  background: -ms-linear-gradient(top, rgb(247, 219, 167) 0%, rgb(241, 171, 134) 100%);
+  background: -moz-linear-gradient(top, rgb(247, 219, 167) 0%, rgb(241, 171, 134) 100%);
+  background: linear-gradient(to bottom, rgb(247, 219, 167) 0%, rgb(241, 171, 134) 100%);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 10px
+}
+
+@include heading-font-size([h1, 1.2em, 20px], [h2, 0.7em, 20px], [h3, 0.4em, 40px], [h4, 0.3em, 30px]);

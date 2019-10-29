@@ -24,15 +24,7 @@ class InstallationController extends Controller
   public function __construct()
   {
 
-
-
-     $this->installedFile = storage_path(config('installer.file'));
-
-     if(defined('CMS_INSTALLED') && CMS_INSTALLED) {
-       if(file_exists($this->installedFile)) {
-        return redirect()->route('home')->send();
-      }
-     }
+     $this->middleware("checkinstall");
 
   }
 
@@ -42,7 +34,7 @@ class InstallationController extends Controller
    * @return \Illuminate\View\View
    */
    public function index(){
-     return view('nickelcms::welcome');
+     return view('nickelcms::pages.welcome');
    }
 
 }

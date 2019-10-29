@@ -1,3 +1,3 @@
 <?php
-// Trying to resolve comflicts 
+// Trying to resolve conflicts 
 ?>

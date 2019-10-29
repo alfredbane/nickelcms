@@ -10,11 +10,11 @@
 define('LARAVEL_START', microtime(true));
 
 /**------------------------------------
- * Below string has been added by
- * NICKEL CMS INSTALLER v1.0
- * Kindly do not remove.
- *
- */
+* Below string has been added by
+* NICKEL CMS INSTALLER v1.0
+* Kindly do not remove.
+*
+*/
 define ('CMS_INSTALLED', true);
 //------------------------------------//
 

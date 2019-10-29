@@ -1,0 +1,23 @@
+.list {
+  padding:0;
+  margin-bottom: 10px;
+  &--type-column {
+    columns: 2;
+    column-gap: 6px;
+  }
+  &.list--type-column {
+
+    .list__item{
+    }
+
+    .list__text {
+      width: 186px;
+      display: block;
+      i.fa-folder-open {
+        display: block;
+        margin-bottom: 10px
+      }
+    }
+
+  }
+}
