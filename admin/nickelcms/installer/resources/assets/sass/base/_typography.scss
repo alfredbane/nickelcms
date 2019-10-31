@@ -1,0 +1,24 @@
+/* For headings and titles */
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap');
+
+/* For regular fonts */
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,600&display=swap');
+
+html,
+body {
+  font-family: $default-font-family;
+  font-size: $base-font-size;
+  color: map-get($colors, gradientColorFirst);
+}
+
+label,
+input,
+code,
+small,
+li,
+blockquote,
+figcaption {
+  font-family: $default-font-family;
+  font-size: $default-text-size;
+  display: block;
+}

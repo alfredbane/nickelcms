@@ -4,9 +4,13 @@ namespace NickelCms\Installer;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\View;
+
 use NickelCms\Installer\Middlewares\CheckInstallation;
 use NickelCms\Installer\Middlewares\CheckInstallerDBSession;
 use NickelCms\Installer\Middlewares\CheckInstallerUserAddSession;
+
+use NickelCms\Installer\ViewComposers\DefaultClassComposer;
 
 class InstallationServiceProvider extends ServiceProvider
 {
@@ -46,7 +50,10 @@ class InstallationServiceProvider extends ServiceProvider
         $router->aliasMiddleware('checkDbIfUserInstalled', CheckInstallerUserAddSession::class);
 
         // Load views from package.
-        $this->loadViewsFrom(__DIR__.'/Views', 'nickelcms');
+        $this->loadViewsFrom(__DIR__.'/../resources/Views', 'nickelcms');
+
+        // Load default classes for views.
+        View::composer('nickelcms::skeleton.mainframe',  DefaultClassComposer::class);
 
 
     }
