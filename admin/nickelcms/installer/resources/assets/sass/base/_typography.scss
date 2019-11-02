@@ -22,3 +22,38 @@ figcaption {
   font-size: $default-text-size;
   display: block;
 }
+
+h1, h2, h3, h4, h5, h6 {
+  font-family: $title-font-family;
+  color: map-get($colors, secondaryColor);
+  font-weight: normal;
+}
+
+@include heading-font-size([h1, 3em, 1.25em], [h2, 2.25em, 1.25em], [h3, 1.75em, 1.25em], [h4, 1.125em, 1.22222222em]);
+
+.text {
+  font-weight: 100;
+  font-size: 18px;
+  color: map-get($colors, secondaryColor);
+  position: relative;
+
+  &.text--special {
+    letter-spacing: 4px;
+  }
+
+}
+
+
+.link {
+  &--font-small {
+    font-size: 12px;
+    letter-spacing: 0.31em;
+    color: map-get($colors, primaryColor);
+  }
+}
+
+.link__nav__item {
+  .item {
+    @extend .link--font-small;
+  }
+}

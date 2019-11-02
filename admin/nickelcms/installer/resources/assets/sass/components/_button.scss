@@ -1,17 +1,14 @@
-.btn {
-
-}
-
 .link {
 
-  max-width: 100px;
-  margin: 0 auto;
-  position: relative;
+  &__button{
 
-  -webkit-transition:height .25s ease, width .25s ease;
-  transition:height .25s ease, width .25s ease;
+    max-width: 100px;
+    margin: 0 auto;
+    position: relative;
 
-  &--button{
+    -webkit-transition:height .25s ease, width .25s ease;
+    transition:height .25s ease, width .25s ease;
+    
     color: map-get($colors, darkGreyColor);
     background-color: map-get($colors, greyColor);
     padding: 25px 28px;
@@ -61,7 +58,7 @@
 
   }
 
-  &--button-active{
+  &__button--active{
 
       color: map-get($colors, lighterColor);
       background-color: map-get($colors, primaryColor);
@@ -95,14 +92,14 @@
         animation-play-state: paused;
       }
 
-      .link--identifier {
+      .link__identifier {
         label {
           cursor:pointer;
         }
       }
   }
 
-  &--identifier {
+  &__identifier {
     position: absolute;
     top: 24px;
     text-align: left;

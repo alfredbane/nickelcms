@@ -5,16 +5,19 @@
 @import "config/mixins";
 
 /* font & color setup */
-@import "base/typography";
 @import "base/common";
+@import "base/spacing";
+@import "base/typography";
 
 /* Components */
 @import "components/button";
 @import "components/card";
 @import "components/footer";
 @import "components/form";
+@import "components/form";
+@import "components/line";
+@import "components/list";
 @import "components/notification";
 @import "components/image";
-@import "components/list";
 
 /* Pages */

@@ -37,12 +37,14 @@
 
 <body class="{{ !empty($body_class) ? $body_class : '' }} {{ implode(' ', $defaultclasses ) }}">
 
-    <div class="wrapper h-100">
+    <div class="wrapper ui container aligned grid justify-content-center h-100">
       @yield('content')
     </div>
 
     <footer class="footer">
-      @include('nickelcms::layouts.footer')
+      <div class="ui container aligned grid">
+        @include('nickelcms::layouts.footer')
+      </div>
     </footer>
 
     <!-- 1.DEFAULT SCRIPTS -->

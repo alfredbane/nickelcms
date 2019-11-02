@@ -64,5 +64,40 @@ return [
 
     'targetcollection' => 'users',
 
+    'cdnimages' => [
+        'logo' => 'https://res.cloudinary.com/nickelcdn/image/upload/v1572677102/Imagelogo_ksh9cv.png'
+    ],
+
+
+    /*
+    |--------------------------------------------------------------------------
+     | Footer links
+     |--------------------------------------------------------------------------
+     |
+     | Footer links for installer screens. These are the links
+     | provided to user in order to have quick access to certain
+     | pages.
+     |
+     */
+
+    'footerlinks' => [
+
+      'docs' => [
+        'url' => '#',
+        'target' => ''
+      ],
+
+      'github' => [
+        'url' => 'https://github.com/alfredbane/nickelcms',
+        'target' => '_blank'
+      ],
+
+      'bug report' => [
+        'url' => '#',
+        'target' => ''
+      ],
+    ],
+
+
 
 ];

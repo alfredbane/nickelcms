@@ -1,6 +1,8 @@
-<div class="link">
-    <a href="{{ $location ?? '#' }}" target="{{ $target ?? '' }}" class="link--button link-{{ $type ?? 'solid' }} {{ $class }}">
+<div class="link {{ $parentclass ?? '' }}">
+    <a href="{{ $location ?? '#' }}" target="{{ $target ?? '' }}" class="link--{{ $type ?? 'solid' }} {{ $class ?? '' }}">
       {{ $slot }}
-      <span class="link--identifier">{{ $identifier }}</span>
+      @isset( $identifier )
+      <span class="link__identifier">{{ $identifier }}</span>
+      @endisset
     </a>
 </div>
