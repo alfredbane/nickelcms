@@ -1,64 +1,86 @@
 @extends('nickelcms::skeleton.mainframe')
 
 @section('pagetitle')
-  {{ trans("Environment setup") }}
+  {{ trans("Create user") }}
 @endsection
 
 @section('content')
 
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="installer-block">
-      <div class="branding">
-        <img width="60" height="60" class="branding__img img-responsive" title="nickel1.0 installer" alt="logo for nickel1.0" src="https://res.cloudinary.com/nickelcdn/image/upload/v1569413988/logo_icon_yqm20u.png" />
-      </div>
+  @component('nickelcms::components.logo')
+    @slot('class')
+      branding__img branding__img--130
+    @endslot
+  @endcomponent
+
+  <div class="aligned two column row">
+    <div class="nine wide column">
       <div class="entry-text">
-        <h3> STEP 4 : Send in the troops. </h3>
-        <p class="text text--special"> Create a user to unleash the kraken. </p>
-        <section class="infocard__body">
-          <form method="post" action="{{ route('cms.environment.storeuser') }}">
-            @csrf
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="username">Username</label>
-                  <input type="text" class="form-control" id="username" name="username" aria-describedby="username" placeholder="Username">
-                </div>
-              </div>
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="user_email">Email</label>
-                  <input type="email" class="form-control" id="user_email" name="user_email" aria-describedby="user_email" placeholder="User email">
-
-                  @error('user_email')
-                    <span class="invalid-feedback active" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-
-                </div>
-              </div>
-            </div>
-            <div class="row">
-              <div class="col-md-6">
-                <div class="form-group">
-                  <label for="password">Password</label>
-                  <input type="text" class="form-control" id="password" name="password" aria-describedby="password" placeholder="Password">
-
-                  @error('password')
-                    <span class="invalid-feedback active" role="alert">
-                        <strong>{{ $message }}</strong>
-                    </span>
-                  @enderror
-
-                </div>
-              </div>
-            </div>
-            <button type="submit" class="btn btn-primary has-background--color-gradientColorFirst">Submit</button>
-          </form>
-        </section>
+        <h2 class="h1"> STEP 4 : Start Onboarding.  </h2>
+        <p class="text text--special">Create first user for the CMS. This user will be an admin having all the privileges.</p>
       </div>
     </div>
   </div>
-</div>
+
+  <form class="ui form aligned four column row" method="post" action="{{ route('cms.environment.storeuser') }}">
+    @csrf
+    <div class="ten wide column ">
+      <div class="ui horizontal segments">
+        <div class="ui segment">
+          <div class="segment__title content--less">
+            <h4 class="h4">{{ trans('DB Details') }}</h4>
+          </div>
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <span class="field__icon"> <i class="material-icons"> account_circle </i> </span>
+                <input type="text" id="username" name="username" aria-describedby="username" placeholder="Username">
+              </div>
+              <div class="field">
+                <span class="field__icon"> <i class="material-icons"> device_hub </i> </span>
+                <input type="email" id="user_email" name="user_email" aria-describedby="user_email" placeholder="User email">
+                @error('user_email')
+                  <span class="invalid-feedback active" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <div class="two fields">
+              <div class="field">
+                <span class="field__icon"> <i class="material-icons"> view_agenda </i> </span>
+                <input type="text" id="password" name="password" aria-describedby="password" placeholder="Password">
+
+                @error('password')
+                  <span class="invalid-feedback active" role="alert">
+                      <strong>{{ $message }}</strong>
+                  </span>
+                @enderror
+              </div>
+              <div class="field">
+
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+      <div class="column middle aligned">
+        @component('nickelcms::components.button')
+
+          @slot('parentclass')
+            link--spacing
+          @endslot
+          @slot('class')
+            link__button link__button--active
+          @endslot
+          <i class="material-icons-outlined">fast_forward</i>
+          @slot('identifier')
+            <span class="link__sidelabel">{{ trans('Finish Installation.') }}</span>
+          @endslot
+        @endcomponent
+      </div>
+    </div>
+  </form>
 @endsection

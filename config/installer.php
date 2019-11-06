@@ -15,37 +15,43 @@ return [
 
     'file' => 'installedcmsinfo.php',
 
-  /*
-   |--------------------------------------------------------------------------
-   | Server Requirements
-   |--------------------------------------------------------------------------
-   |
-   | This is the default Laravel server requirements, you can add as many
-   | as your application require, we check if the extension is enabled
-   | by looping through the array and run "extension_loaded" on it.
-   |
-   */
-   'core' => [
-       'minPhpVersion' => '7.0.0',
-   ],
-   'final' => [
-       'key' => true,
-       'publish' => false,
-   ],
-   'requirements' => [
-       'php' => [
-           'openssl',
-           'pdo',
-           'mbstring',
-           'tokenizer',
-           'mongodb',
-           'JSON',
-           'cURL',
-       ],
-       'apache' => [
-           'mod_rewrite',
-       ],
-   ],
+    'final' => [
+        'key' => true,
+        'publish' => false,
+    ],
+
+    /*
+     |--------------------------------------------------------------------------
+     | Server Requirements
+     |--------------------------------------------------------------------------
+     |
+     | This is the default Laravel server requirements, you can add as many
+     | as your application require, we check if the extension is enabled
+     | by looping through the array and run "extension_loaded" on it.
+     |
+     */
+     'core' => [
+         'minPhpVersion' => '7.0.0',
+         'apacheVersion' => '2.4.29',
+     ],
+
+     'requirements' => [
+         'php' => [
+             'openssl',
+             'pdo',
+             'mbstring',
+             'tokenizer',
+             'mongodb',
+             'JSON',
+             'cURL',
+         ],
+         'server' => [
+             'mod_rewrite',
+         ],
+         'mongodb' => [
+             'version',
+         ],
+     ],
 
    /*
     |--------------------------------------------------------------------------
@@ -56,6 +62,7 @@ return [
     | requires more permissions just add them to the array list bellow.
     |
     */
+
     'permissions' => [
         'storage/framework/'     => '775',
         'storage/logs/'          => '775',

@@ -1,0 +1,54 @@
+/* The wrapper_checkbox */
+.wrapper_checkbox {
+  display: block;
+  position: relative;
+  padding-left: 35px;
+  margin-bottom: 10px;
+  cursor: pointer;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+  user-select: none;
+}
+
+/* Hide the browser's default checkbox */
+.wrapper_checkbox input {
+  position: absolute;
+  opacity: 0;
+  cursor: pointer;
+  height: 0;
+  width: 0;
+}
+
+/* Create a custom checkbox */
+.checkmark {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 23px;
+  width: 23px;
+  background-color: #eee;
+  text-align: center;
+}
+
+/* On mouse-over, add a grey background color */
+.wrapper_checkbox:hover input ~ .checkmark {
+  background-color: #ccc;
+}
+
+/* When the checkbox is checked, add a blue background */
+.wrapper_checkbox input:checked ~ .checkmark {
+  background-color: map-get($colors, secondaryColor);
+}
+
+.checkmark i {
+  color: #fff;
+  font-size: 12px;
+  display: none;
+  padding: 5px
+}
+
+/* Show the checkmark when checked */
+.wrapper_checkbox input:checked ~ .checkmark i {
+  display: block;
+}

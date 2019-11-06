@@ -1,5 +1,6 @@
 .link {
 
+
   &__button{
 
     max-width: 100px;
@@ -8,7 +9,7 @@
 
     -webkit-transition:height .25s ease, width .25s ease;
     transition:height .25s ease, width .25s ease;
-    
+
     color: map-get($colors, darkGreyColor);
     background-color: map-get($colors, greyColor);
     padding: 25px 28px;
@@ -22,6 +23,7 @@
     position: relative;
     z-index: 9999999;
     cursor: pointer;
+    border : none;
 
     i.material-icons-outlined {
       font-size: 30px;

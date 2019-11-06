@@ -32,10 +32,14 @@ class RequirementCheckController extends Controller
       $phpSupportInfo = $this->requirements->checkPHPversion(
           config('installer.core.minPhpVersion')
       );
+
+      $serverVersionInfo = $this->requirements->checkServerVersion();
+
       $requirements = $this->requirements->check(
           config('installer.requirements')
       );
-      return view('nickelcms::pages.requirementscheck', compact('requirements', 'phpSupportInfo'));
+
+      return view('nickelcms::pages.requirementscheck', compact('requirements', 'phpSupportInfo', 'serverVersionInfo'));
   }
 
 }

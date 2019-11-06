@@ -1,5 +1,16 @@
 .list {
 
+  &--vertical {
+    padding-left: 35px;
+
+    .list__item {
+      padding: 0;
+      display: block;
+      overflow: hidden;
+      position: relative;
+    }
+
+  }
   &--horizontal {
 
     display: inline;

@@ -6,71 +6,110 @@
 
 @section('content')
 
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="installer-block">
-      <div class="branding">
-        <img width="60" height="60" class="branding__img img-responsive" title="nickel1.0 installer" alt="logo for nickel1.0" src="https://res.cloudinary.com/nickelcdn/image/upload/v1569413988/logo_icon_yqm20u.png" />
-      </div>
+  @component('nickelcms::components.logo')
+    @slot('class')
+      branding__img branding__img--130
+    @endslot
+  @endcomponent
+
+  <div class="aligned two column row">
+    <div class="twelve wide column">
       <div class="entry-text">
-        <h3> STEP 1 : Preparing for Launch </h3>
-        <p class="text text--special"> Nickel 1.0 built with Laravel has some specific requirements before it can run on your system. Check the
-          <a title="dependency installation guide" class="link link--inline link--highlighted has-background--color-gradientColorFirst" target="_blank" href="https://laravel.com/docs/5.7#server-requirements">documentation</a> in order to install the dependencies.
+        <h2 class="h1">Step 1 : Pre launch check  </h2>
+        <p class="text text--special">Check the
+          <a title="dependency installation guide" class="link link--inline link--highlighted" target="_blank" href="https://laravel.com/docs/5.7#server-requirements">
+            documentation
+          </a>
+          in order to install the dependencies.
         </p>
-        @foreach($requirements['requirements'] as $type => $requirement)
-        <div class="infocard infocard--type-fancy">
-          <section class="infocard__header {{ $phpSupportInfo['supported'] ? 'success' : 'error' }}">
-            <div class="infocard__title">
-              <h4>{{ ucfirst($type) }}</h4>
-                @if($type == 'php')
-                  <small class="infocard__item">
-                      ( Required version : {{ $phpSupportInfo['minimum'] }} or higher )
-                  </small>
-                @endif
-            </div>
-            @if($type == 'php')
-              <div class="infocard__info">
-                <span class="">
-                    <strong>
-                        {{ $phpSupportInfo['current'] }}
-                    </strong>
-                    <i class="fa fa-fw fa-{{ $phpSupportInfo['supported'] ? 'check-circle-o' : 'exclamation-circle' }} row-icon" aria-hidden="true"></i>
-                </span>
-              </div>
-            @endif
-          </section>
-
-          <section class="infocard__body">
-            <ul class="list list--type-column">
-              @foreach($requirements['requirements'][$type] as $extention => $enabled)
-                  <li class="list__item {{ $enabled ? 'success' : 'error' }}">
-                    <div class="content">
-                      <span class="infocard__item float-left">{{ $extention }}</span>
-                      <div class="infocard__status float-right">
-                        @if(!$enabled)
-                          <i class="fas fa-exclamation-triangle float-left"></i>
-                        @endif
-                        <label class="switch-wrap float-right">
-                          <input type="checkbox" {{ $enabled ? 'checked' : '' }} disabled='disabled'/>
-                          <div class="switch"></div>
-                        </label>
-                      </div>
-                    </div>
-                  </li>
-              @endforeach
-            </ul>
-          </section>
-        </div>
-        @endforeach
-
-        @if(!isset($requirements['errors']))
-            <a href="{{ route('cms.environment.permissions') }}" class="link has-background--color-gradientColorSecond btn btn-solid">
-              <label class="btn__text">Everything looks fine here. Go ahead.</label> <i class="btn__icon fas fa-long-arrow-alt-right"></i>
-            </a>
-        @endif
 
       </div>
     </div>
   </div>
-</div>
+
+  <div class="aligned four column row">
+    <div class="ten wide column ">
+        <div class="ui horizontal segments">
+        @foreach( $requirements['requirements'] as $type => $requirement )
+          <div class="ui segment">
+            <div class="segment__title">
+              <h4 class="h4">{{ ucfirst($type) }}</h4>
+            </div>
+
+            @component('nickelcms::components.list')
+
+              @slot('listclass')
+                no-padding checklist
+              @endslot
+
+              @slot('linklists')
+
+                @if($type == 'php')
+                  @isset( $phpSupportInfo['current'] )
+                    <li class="list__item">
+                      <label class="wrapper_checkbox">
+                        <span class="item__label">{{ $phpSupportInfo['current'] }}</span>
+                        <input type="checkbox" {{ $phpSupportInfo['current'] ? 'checked' : '' }} disabled='disabled'/>
+                        <div class="checkmark">
+                          <i class="material-icons">done_all</i>
+                        </div>
+                      </label>
+                    </li>
+                  @endisset
+                @endif
+
+                @if($type == 'server')
+                  @isset( $serverVersionInfo )
+                    <li class="list__item">
+                      <label class="wrapper_checkbox">
+                        <span class="item__label">{{ $serverVersionInfo }}</span>
+                        <input type="checkbox" {{ $serverVersionInfo ? 'checked' : '' }} disabled='disabled'/>
+                        <div class="checkmark">
+                          <i class="material-icons">done_all</i>
+                        </div>
+                      </label>
+                    </li>
+                  @endisset
+                @endif
+                @foreach($requirements['requirements'][$type] as $extention => $enabled)
+                  <li class="list__item">
+                    <div class="status">
+                      <label class="wrapper_checkbox">
+                        <span class="item__label">{{ $extention }}</span>
+                        <input type="checkbox" {{ $enabled ? 'checked' : '' }} disabled='disabled'/>
+                        <div class="checkmark">
+                          <i class="material-icons">done_all</i>
+                        </div>
+                      </label>
+                    </div>
+                  </li>
+                @endforeach
+              @endslot
+            @endcomponent
+          </div>
+        @endforeach
+        </div>
+      </div>
+      <div class="column middle aligned">
+        @component('nickelcms::components.link')
+          @slot('location')
+            {{ route('cms.environment.permissions') }}
+          @endslot
+          @slot('parentclass')
+            link--spacing
+          @endslot
+          @slot('class')
+            @if(!isset($requirements['errors']))
+              link__button link__button--active
+            @else
+              link__button
+            @endif
+          @endslot
+          <i class="material-icons-outlined">fast_forward</i>
+          @slot('identifier')
+            <span class="link__sidelabel">System File permissions</span>
+          @endslot
+        @endcomponent
+      </div>
+  </div>
 @endsection

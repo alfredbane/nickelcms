@@ -6,42 +6,76 @@
 
 @section('content')
 
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="installer-block">
-      <div class="branding">
-        <img width="60" height="60" class="branding__img img-responsive" title="nickel1.0 installer" alt="logo for nickel1.0" src="https://res.cloudinary.com/nickelcdn/image/upload/v1569413988/logo_icon_yqm20u.png" />
-      </div>
+  @component('nickelcms::components.logo')
+    @slot('class')
+      branding__img branding__img--130
+    @endslot
+  @endcomponent
+
+  <div class="aligned two column row">
+    <div class="nine wide column">
       <div class="entry-text">
-        <h3> STEP 2 : Check system weather </h3>
-        <p class="text text--special"> In order to let this laravel CMS work properly, the host system must have required permissions. Safe permissions are 755 to folder and 644 to files. </p>
-        <section class="infocard__body">
-          <ul class="list list--type-column">
-            @foreach($permissions['permissions'] as $permission)
-                <li class="list__item">
-                  <div class="content">
-                    <div class="list__text float-left">
-                      <i class="fas fa-folder-open"></i>
-                      {{ $permission['folder'] }} : {{ $permission['permission'] }}
-                    </div>
-                    <div class="infocard__status float-right">
-                      <label class="switch-wrap float-right">
-                        <input type="checkbox" {{ $permission['isSet'] ? 'checked':'' }} disabled='disabled'/>
-                        <div class="switch"></div>
-                      </label>
-                    </div>
-                  </div>
-                </li>
-            @endforeach
-          </ul>
-          @if ( ! isset($permissions['errors']))
-            <a href="{{ route('cms.environment.settings') }}" class="link has-background--color-gradientColorSecond btn btn-solid">
-              <label class="btn__text">Engine is roaring. Let's connect to mission control.</label> <i class="btn__icon fas fa-long-arrow-alt-right"></i>
-            </a>
-          @endif
-        </section>
+        <h2 class="h1">STEP 2 : Check weather  </h2>
+        <p class="text text--special">Check the
+          In order to let this laravel CMS work properly, safe permissions are 755 to folder and 644 to files.
+        </p>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="aligned four column row">
+    <div class="ten wide column ">
+      <div class="ui horizontal segments">
+        <div class="ui segment">
+          <div class="segment__title content--less">
+            <h4 class="h4">{{ trans('File Permissions') }}</h4>
+          </div>
+          @component('nickelcms::components.list')
+
+            @slot('listclass')
+              no-padding checklist
+            @endslot
+
+            @slot('linklists')
+              @foreach( $permissions['permissions'] as $permission )
+                <li class="list__item">
+                  <div class="status">
+                    <label class="wrapper_checkbox">
+                      <span class="item__label">{{ $permission['folder'] }}</span>
+                      <input type="checkbox" {{ $permission['isSet'] ? 'checked':'' }} disabled='disabled'/>
+                      <div class="checkmark">
+                        <i class="material-icons">folder_open</i>
+                      </div>
+                    </label>
+                  </div>
+                </li>
+              @endforeach
+            @endslot
+          @endcomponent
+        </div>
+      </div>
+    </div>
+
+    <div class="column middle aligned">
+      @component('nickelcms::components.link')
+        @slot('location')
+          {{ route('cms.environment.settings') }}
+        @endslot
+        @slot('parentclass')
+          link--spacing
+        @endslot
+        @slot('class')
+          @if(!isset($requirements['errors']))
+            link__button link__button--active
+          @else
+            link__button
+          @endif
+        @endslot
+        <i class="material-icons-outlined">fast_forward</i>
+        @slot('identifier')
+          <span class="link__sidelabel">{{ trans('Setup Database') }}</span>
+        @endslot
+      @endcomponent
+    </div>
+  </div>
 @endsection

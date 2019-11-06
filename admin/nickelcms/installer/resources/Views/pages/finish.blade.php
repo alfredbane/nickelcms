@@ -1,26 +1,48 @@
-@extends('nickelcms::skeleton.mainframe')
+@extends('nickelcms::skeleton.mainframe', ['body_class' => 'installer__init'])
 
 @section('pagetitle')
-  Nickle 1.0 Installer
+  {{ trans("Nickle 1.0 Installer") }}
 @endsection
 
 @section('content')
-<div class="container h-100">
-  <div class="row h-100 justify-content-center align-items-center">
-    <div class="col-md-3 border--right">
-      <div class="branding">
-        <img title="nickel1.0 installer" alt="logo for nickel1.0" src="https://res.cloudinary.com/nickelcdn/image/upload/v1569413988/logo_icon_yqm20u.png" class="branding__img branding__img--130 img-responsive" />
-      </div>
-    </div>
-    <div class="col-md-5">
+
+  @component('nickelcms::components.logo')
+    @slot('class')
+      branding__img branding__img--130
+    @endslot
+  @endcomponent
+
+  <div class="aligned two column row">
+    <div class="column">
       <div class="entry-text">
-        <h3>Houston, we are good to go ! T -0 seconds</h3>
-        <p class="text text--special"> Introducing NICKEL 1.0 , an open source laravel CMS. Crafted just for your upcoming creation.  </p>
-        <form method="GET" action="{{ route('cms.environment.finishInstall') }}">
-          <button type="submit" class="btn btn-primary has-background--color-gradientColorFirst">Let's craft something wonderful.</button>
-        </form>
+        <h1 class="h1">Howdy Artisan ! </h1>
+        <p class="text text--special"> Installer has successfully installed the CMS instance, you can go to admin login screen to get started. However, that is not it NICKEL 1.0 has lot more to offer when it comes to create something incredible. </p>
+        <p class="text text--special"> <strong>Find useful links in footer.</strong> </p>
       </div>
     </div>
   </div>
-</div>
+
+  <div class="aligned two column row">
+
+    <div class="column">
+      <p class="text text--special paragraph--spacing-top"> Happy Crafting <span class="line line--border"></span></p>
+    </div>
+
+    <div class="column middle aligned">
+      <form method="GET" action="{{ route('cms.environment.finishInstall') }}">
+        @component('nickelcms::components.button')
+          @slot('parentclass')
+            link--spacing
+          @endslot
+          @slot('class')
+            link__button link__button--active
+          @endslot
+          <i class="material-icons-outlined">fast_forward</i>
+          @slot('identifier')
+            <span class="link__sidelabel">{{ trans('Create Something') }}</span>
+          @endslot
+        @endcomponent
+      </form>
+    </div>
+  </div>
 @endsection
