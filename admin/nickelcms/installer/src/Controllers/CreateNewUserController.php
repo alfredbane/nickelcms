@@ -41,9 +41,11 @@ class CreateNewUserController extends Controller
 
     User::create($request->all());
 
-    if ( !$request->session()->has('userCreated') ) {
-      $request->session()->put('userCreated', true);
+    if ( !$request->session()->has(config('installer.sessionvar.user')) ) {
+      $request->session()->put(config('installer.sessionvar.user'), true);
     }
+
+    event(new FinishInstallationEvent());
 
     $notification = array(
       'message' => 'Finishing up installation.',

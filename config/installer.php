@@ -105,6 +105,11 @@ return [
       ],
     ],
 
+    'sessionvar' => [
+      'user' => 'userCreated',
+      'database' => 'dbInstalled'
+    ]
+
 
 
 ];

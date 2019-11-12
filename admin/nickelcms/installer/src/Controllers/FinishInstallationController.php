@@ -4,7 +4,6 @@ namespace NickelCms\Installer\Controllers;
 
 use Illuminate\Http\Request;
 use Illuminate\Routing\Controller;
-use NickelCms\Installer\Events\FinishInstallationEvent;
 
 class FinishInstallationController extends Controller
 {
@@ -29,13 +28,13 @@ class FinishInstallationController extends Controller
       return view('nickelcms::pages.finish');
     }
 
-    public function finishInstallerSetup() {
+    public function finishInstallerSetup(Request $request) {
 
       try {
 
-        event(new FinishInstallationEvent());
-
         \Artisan::call('key:generate', ['--force'=> true]);
+
+        $request->session()->flush();
 
       } catch( Exception $e ) {
 

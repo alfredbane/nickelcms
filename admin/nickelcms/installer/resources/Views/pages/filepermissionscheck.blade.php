@@ -16,8 +16,7 @@
     <div class="nine wide column">
       <div class="entry-text">
         <h2 class="h1">STEP 2 : Check weather  </h2>
-        <p class="text text--special">Check the
-          In order to let this laravel CMS work properly, safe permissions are 755 to folder and 644 to files.
+        <p class="text text--special">Permissions check fo below folders. Files permission must be proper in order to make this installer work.
         </p>
       </div>
     </div>
@@ -43,7 +42,7 @@
                     <label class="wrapper_checkbox">
                       <span class="item__label">{{ $permission['folder'] }}</span>
                       <input type="checkbox" {{ $permission['isSet'] ? 'checked':'' }} disabled='disabled'/>
-                      <div class="checkmark">
+                      <div class="checkmark {{ !$permission['isSet'] ? 'error':'' }} ">
                         <i class="material-icons">folder_open</i>
                       </div>
                     </label>
