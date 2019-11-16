@@ -34,10 +34,10 @@ class MigrateTablesToDb
 
       try {
 
-        if (file_exists(\App::getCachedConfigPath())) {
-            \Artisan::call("config:cache");
-            \Artisan::call("config:clear");
-        }
+
+        \Artisan::call("config:cache");
+        \Artisan::call("config:clear");
+        \Artisan::call("cache:clear");
 
         \Artisan::call('migrate', array('--force' => true));
 

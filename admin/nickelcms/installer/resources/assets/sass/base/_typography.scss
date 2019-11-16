@@ -47,6 +47,10 @@ figcaption {
     letter-spacing: 4px;
   }
 
+  &.text--error {
+    color: map-get($colors, errorColor);
+  }
+
 }
 
 

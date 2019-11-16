@@ -16,13 +16,20 @@
     <div class="twelve wide column">
       <div class="entry-text">
         <h2 class="h1">Step 1 : Pre launch check  </h2>
-        <p class="text text--special">Check the
-          <a title="dependency installation guide" class="link link--inline link--highlighted" target="_blank" href="https://laravel.com/docs/5.7#server-requirements">
-            documentation
-          </a>
-          in order to install the dependencies.
-        </p>
-
+        @if( isset($requirements['errors']) )
+          <span class="text text--special text--error">
+            Looks like some of the requirements are not installed.
+            Install below unchecked requirements and reload. Check
+            <a title="dependency installation guide" class="link link--inline link--highlighted" target="_blank" href="https://laravel.com/docs/5.7#server-requirements">
+              documentation
+            </a>
+            in order to install the dependencies.
+          </span>
+        @else
+          <p class="text text--special">
+            Houston we are a go. All the requirements are met, you can proceed further.
+          </p>
+        @endisset
       </div>
     </div>
   </div>
@@ -92,9 +99,11 @@
       </div>
       <div class="column middle aligned">
         @component('nickelcms::components.link')
-          @slot('location')
-            {{ route('cms.environment.permissions') }}
-          @endslot
+          @if( !isset($requirements['errors']) )
+            @slot('location')
+              {{ route('cms.environment.permissions') }}
+            @endslot
+          @endif
           @slot('parentclass')
             link--spacing
           @endslot

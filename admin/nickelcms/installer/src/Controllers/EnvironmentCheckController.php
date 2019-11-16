@@ -6,7 +6,7 @@ use Illuminate\Routing\Controller;
 use NickelCms\Installer\Requests\DatabaseStoreRequest;
 
 use NickelCms\Installer\Helpers\EnvironmentSetupHelper;
-use NickelCms\Installer\Events\DbDetailsUpdated;
+
 
 class EnvironmentCheckController extends Controller
 {
@@ -23,6 +23,7 @@ class EnvironmentCheckController extends Controller
 
     $this->middleware("checkinstall");
     $this->middleware("checkDbIfInstalled");
+    $this->middleware("checkIfRequirementsExists");
     $this->envsetuphelper = $envsetuphelper;
 
   }
@@ -44,8 +45,6 @@ class EnvironmentCheckController extends Controller
   public function update(DatabaseStoreRequest $request) {
 
     $this->envsetuphelper->updateAndSaveEnv($request);
-
-    event(new DbDetailsUpdated());
 
     return redirect()->route('cms.environment.createuser');
 

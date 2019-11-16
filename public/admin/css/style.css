@@ -63,6 +63,11 @@ p {
   border-color: #E5E5E5;
 }
 
+.has-background--color-errorColor {
+  background-color: #ff6666;
+  border-color: #ff6666;
+}
+
 .has-background--color-greyColorLightShade {
   background-color: rgba(217, 224, 224, 0.6);
   border-color: rgba(217, 224, 224, 0.6);
@@ -104,7 +109,8 @@ p {
 
 .ui.aligned.justify-content-center {
   align-content: center;
-  align-items: center;
+  -webkit-box-align: center;
+          align-items: center;
 }
 
 .no-padding {
@@ -194,6 +200,10 @@ h4 {
   letter-spacing: 4px;
 }
 
+.text.text--error {
+  color: #ff6666;
+}
+
 .link--font-small,
 .link__nav__item .item {
   font-size: 12px;
@@ -212,6 +222,7 @@ h4 {
   max-width: 100px;
   margin: 0 auto;
   position: relative;
+  -webkit-transition: height 0.25s ease, width 0.25s ease;
   transition: height 0.25s ease, width 0.25s ease;
   color: #C4C4C4;
   background-color: #E5E5E5;
@@ -706,7 +717,8 @@ h4 {
   -moz-transform: rotate(-90deg);
   left: -121px;
   width: 268px;
-  transform-origin: top;
+  -webkit-transform-origin: top;
+          transform-origin: top;
   top: 52%;
   text-align: left;
   border-bottom: 1px solid #93b5b3;

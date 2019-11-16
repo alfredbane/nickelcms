@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller;
 use NickelCms\Installer\Models\User;
 use NickelCms\Installer\Helpers\FinishInstallationHelper;
 use NickelCms\Installer\Events\FinishInstallationEvent;
+use NickelCms\Installer\Events\DbDetailsUpdated;
 
 class CreateNewUserController extends Controller
 {
@@ -18,6 +19,7 @@ class CreateNewUserController extends Controller
 
     $this->middleware("checkinstall");
     $this->middleware("checkDbIfUserInstalled");
+    $this->middleware("checkIfRequirementsExists");
 
     $this->afterFinishInstall = $afterFinishInstall;
 
@@ -29,7 +31,10 @@ class CreateNewUserController extends Controller
    * @return \Illuminate\View\View
    */
   public function index() {
+
+
     return view('nickelcms::pages.createuser');
+
   }
 
   /**
@@ -38,6 +43,8 @@ class CreateNewUserController extends Controller
    * @return
    */
   public function store(Request $request) {
+
+    event(new DbDetailsUpdated());
 
     User::create($request->all());
 
@@ -53,7 +60,7 @@ class CreateNewUserController extends Controller
     );
 
     return redirect()->route('cms.environment.finalizeinstall')
-                    ->with($notification)->send();
+                    ->with($notification);
 
   }
 

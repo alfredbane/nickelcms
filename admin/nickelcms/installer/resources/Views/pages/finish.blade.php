@@ -15,8 +15,8 @@
   <div class="aligned two column row">
     <div class="column">
       <div class="entry-text">
-        <h1 class="h1">Howdy Artisan ! </h1>
-        <p class="text text--special"> Installer has successfully installed the CMS instance, you can go to admin login screen to get started. However, that is not it NICKEL 1.0 has lot more to offer when it comes to create something incredible. </p>
+        <h1 class="h1">Lift Off!</h1>
+        <p class="text text--special"> The CMS instance was installed successfully, you can go to admin login screen to get started. This is just a beginning, NICKEL 1.0 has lot more to offer when it comes to create something incredible. </p>
         <p class="text text--special"> <strong>Find useful links in footer.</strong> </p>
       </div>
     </div>

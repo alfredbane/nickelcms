@@ -1,7 +1,7 @@
 <script>
 
   $(function () { //ready
-    toastr.options.fadeOut = 6500;
+    toastr.options.timeOut = 12000;
     toastr.options.positionClass = 'toast-top-right';
 
     @if(Session::has('message'))

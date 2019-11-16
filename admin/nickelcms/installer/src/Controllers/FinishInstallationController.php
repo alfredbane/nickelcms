@@ -16,6 +16,8 @@ class FinishInstallationController extends Controller
     public function __construct() {
 
       $this->middleware("checkinstall");
+      $this->middleware("checkIfRequirementsExists");
+      $this->middleware("checkIfAllStepsComplete");
 
     }
 
@@ -25,7 +27,9 @@ class FinishInstallationController extends Controller
      * @return \Illuminate\View\View
      */
     public function index() {
+
       return view('nickelcms::pages.finish');
+
     }
 
     public function finishInstallerSetup(Request $request) {
