@@ -1,0 +1,41 @@
+.segments {
+
+  &.ui.horizontal {
+
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+
+    &> .segment:first-child {
+      border-left: none;
+    }
+
+    > .ui.segment {
+      width: 470px;
+      background-color: transparent;
+      border: none;
+
+      .segment__title {
+        position: absolute;
+        transform: rotate(-90deg);
+        -webkit-transform: rotate(-90deg);
+        -moz-transform: rotate(-90deg);
+        left: -121px;
+        width: 268px;
+        transform-origin: top;
+        top: 52%;
+        text-align: left;
+        border-bottom: 1px solid map-get($colors, primaryColor);
+        padding-bottom: 6px;
+        text-transform: uppercase;
+        &.content--less {
+          left: -108px;
+          width: 212px;
+        }
+      }
+
+    }
+
+  }
+
+}

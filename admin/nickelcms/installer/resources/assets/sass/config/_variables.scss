@@ -1,0 +1,35 @@
+// Typography
+
+$default-font-family: 'Nunito', sans-serif;
+
+$title-font-family: "Abril Fatface", cursive;
+
+$base-font-size: 1em;
+
+$default-anchor-size: 1em;
+
+$default-text-size: 1em;
+
+// Colors
+$colors:(
+primaryColor: #93b5b3,
+secondaryColor: #63707e,
+shadeTwoDark: #3d444c,
+lightColor: #c8dad3,
+lighterColor: #f2f6f5,
+darkGreyColor: #C4C4C4,
+greyColor: #E5E5E5,
+errorColor: #ff6666,
+greyColorLightShade: rgba(217, 224, 224, 0.6),
+greyColorLighterShade: rgba(217, 224, 224, 0.44),
+gradientColorFirst: #f7dba7,
+gradientColorSecond: #f1ab86,
+extraColor: #c57b57,
+);
+
+/* Header */
+$header-height: 40px;
+
+$width: 53px;
+$padding: 5px;
+$height: $width / 2 + $padding;

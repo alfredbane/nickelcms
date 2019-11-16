@@ -4,9 +4,15 @@ namespace NickelCms\Installer;
 
 use Illuminate\Support\ServiceProvider;
 use Illuminate\Routing\Router;
+use Illuminate\Support\Facades\View;
+
 use NickelCms\Installer\Middlewares\CheckInstallation;
 use NickelCms\Installer\Middlewares\CheckInstallerDBSession;
 use NickelCms\Installer\Middlewares\CheckInstallerUserAddSession;
+use NickelCms\Installer\Middlewares\CheckRequirementsExists;
+use NickelCms\Installer\Middlewares\CheckAllStepsComplete;
+
+use NickelCms\Installer\ViewComposers\DefaultClassComposer;
 
 class InstallationServiceProvider extends ServiceProvider
 {
@@ -39,14 +45,22 @@ class InstallationServiceProvider extends ServiceProvider
         // Add a middleware to check cms installation.
         $router->aliasMiddleware('checkinstall', CheckInstallation::class);
 
-        // Add a middleware to check if current function is already installed.
+        // Add a middleware to check if database has been installed.
         $router->aliasMiddleware('checkDbIfInstalled', CheckInstallerDBSession::class);
 
-        // Add a middleware to check if current function is already installed.
+        // Add a middleware to check if user has been created.
         $router->aliasMiddleware('checkDbIfUserInstalled', CheckInstallerUserAddSession::class);
 
+        // Add a middleware to check if requirements exists.
+        $router->aliasMiddleware('checkIfRequirementsExists', CheckRequirementsExists::class);
+
+        $router->aliasMiddleware('checkIfAllStepsComplete', CheckAllStepsComplete::class);
+
         // Load views from package.
-        $this->loadViewsFrom(__DIR__.'/Views', 'nickelcms');
+        $this->loadViewsFrom(__DIR__.'/../resources/Views', 'nickelcms');
+
+        // Load default classes for views.
+        View::composer('nickelcms::skeleton.mainframe',  DefaultClassComposer::class);
 
 
     }

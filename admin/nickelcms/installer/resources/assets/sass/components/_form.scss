@@ -1,0 +1,58 @@
+.ui.form {
+
+  .field {
+    padding-left:35px;
+    position: relative;
+
+    input {
+      background-color: transparent;
+      border: 0.3px solid map-get($colors, primaryColor);
+      border-radius: 0;
+      padding-left: 36px;
+
+      &[type="text"]:focus,
+      &[type="tel"]:focus,
+      &[type="email"]:focus,
+      &[type="password"]:focus {
+        background-color: transparent;
+        border: 0.3px solid map-get($colors, primaryColor);
+        border-radius: 0;
+      }
+
+    }
+
+    span.field__icon {
+      position: absolute;
+      top: 12px;
+      bottom: 0;
+      left: 19px;
+      color: map-get($colors, primaryColor);
+      i{
+        font-size: 18px;
+      }
+    }
+
+  }
+
+  ::placeholder {
+    color: map-get($colors, primaryColor);
+    opacity: 1; /* Firefox */
+    text-transform: uppercase;
+  }
+
+  :-ms-input-placeholder { /* Internet Explorer 10-11 */
+    color: map-get($colors, primaryColor);
+    text-transform: uppercase;
+  }
+
+  ::-ms-input-placeholder { /* Microsoft Edge */
+    color: map-get($colors, primaryColor);
+    text-transform: uppercase;
+  }
+
+  ::-webkit-input-placeholder { /* Microsoft Edge */
+    color: map-get($colors, primaryColor);
+    text-transform: uppercase;
+  }
+
+}

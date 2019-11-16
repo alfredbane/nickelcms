@@ -3,6 +3,7 @@
 namespace NickelCms\Installer\Helpers;
 
 use Exception;
+use Dotenv;
 use Illuminate\Http\Request;
 use NickelCms\Installer\Traits\MongoDBConnectionTrait;
 
@@ -57,12 +58,64 @@ class EnvironmentSetupHelper {
   }
 
   /**
+   * Create mongo DB connection.
+   *
+   * @return new MongoDB\Client connection
+   */
+  public function mongoConnection ($request) {
+    if( !empty($request->db_user) ) {
+      $mongoClientAddress = "mongodb://".$request->db_user.':'.$request->db_passwrd.'@'
+      .$request->db_host.':'.$request->db_host_port.'/';
+    } else {
+      $mongoClientAddress = "mongodb://".$request->db_host.':'.$request->db_host_port.'/';
+    }
+    return new \MongoDB\Client($mongoClientAddress);
+  }
+  /**
+   * Check if Requested DB exists.
+   *
+   * @param Illuminate\Http\Request
+   * @return boolean
+   *
+   */
+  public function mongoHasDatabase ($request) {
+    $mongoConnection = $this->mongoConnection($request) ;
+    $databaseList = $mongoConnection->listDatabases();
+    foreach ($databaseList as $database) {
+      if( $database->getName() == $request->db_name ) {
+        return true;
+      }
+    }
+    return false;
+  }
+  /**
+   * Check if Requested DB does not
+   * have preinstalled collections.
+   *
+   * @param Illuminate\Http\Request
+   * @return boolean
+   *
+   */
+  public function mongoDatabaseHasCollection ($request) {
+    $mongoConnection = $this->mongoConnection($request) ;
+    $database = $mongoConnection->selectDatabase($request->db_name);
+    $collectionList = $database->listCollections();
+    foreach ($collectionList as $item) {
+      if( $item->getName() === 'users' ) {
+        return true;
+      }
+    }
+    return false;
+  }
+
+  /**
    * Edit and save the ENV.
    *
    * @return mixed
    */
   public function updateAndSaveEnv(Request $request)
   {
+
 
     $envData =
     'APP_NAME=Laravel'."\n".

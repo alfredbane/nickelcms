@@ -1,0 +1,13 @@
+.line {
+
+  position: absolute;
+  width: 165px;
+  top: 50%;
+
+  &.line--border {
+    height: 1px;
+    background-color: map-get($colors, primaryColor);
+    margin-left: 16px;
+  }
+
+}

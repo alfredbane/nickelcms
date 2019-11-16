@@ -34,17 +34,17 @@ class MigrateTablesToDb
 
       try {
 
-        if (file_exists(\App::getCachedConfigPath())) {
-            \Artisan::call("config:cache");
-            \Artisan::call("config:clear");
-        }
+
+        \Artisan::call("config:cache");
+        \Artisan::call("config:clear");
+        \Artisan::call("cache:clear");
 
         \Artisan::call('migrate', array('--force' => true));
 
-        if ( !$this->request->session()->has('dbInstalled') ) {
-          $this->request->session()->put('dbInstalled', true);
+        if ( !$this->request->session()->has(config('installer.sessionvar.database')) ) {
+          $this->request->session()->put(config('installer.sessionvar.database'), true);
         }
-        
+
       } catch(Exception $e) {
 
         $notification = array(

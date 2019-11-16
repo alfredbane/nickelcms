@@ -16,4 +16,4 @@ mix.js('resources/js/app.js', 'public/js')
 
 // Admin sass compilation
 
-mix.sass('admin/nickelcms/installer/src/assets/sass/style.scss', 'public/css/admin/').minify('style.min.css');
+mix.sass('admin/nickelcms/installer/resources/assets/sass/style.scss', 'public/admin/css/');

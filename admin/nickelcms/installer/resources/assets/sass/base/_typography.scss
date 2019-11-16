@@ -1,0 +1,74 @@
+/* For headings and titles */
+@import url('https://fonts.googleapis.com/css?family=Abril+Fatface&display=swap');
+
+/* For regular fonts */
+@import url('https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,600,700,900&display=swap');
+
+html,
+body {
+  font-family: $default-font-family;
+  font-size: $base-font-size;
+  color: map-get($colors, secondaryColor);
+}
+
+label,
+input,
+code,
+small,
+li,
+blockquote,
+figcaption {
+  font-family: $default-font-family;
+  font-size: $default-text-size;
+  display: block;
+}
+
+.h1, .h2, .h3, .h5 {
+  font-family: $title-font-family;
+  color: map-get($colors, secondaryColor);
+  font-weight: normal;
+}
+
+.h4 {
+  font-family: $default-font-family;
+  color: map-get($colors, primaryColor);
+  font-weight: 700;
+}
+
+@include heading-font-size([h1, 3em, 1.25em], [h2, 2.25em, 1.25em], [h3, 1.75em, 1.25em], [h4, 1.125em, 1.22222222em]);
+
+.text {
+  font-weight: 100;
+  font-size: 18px;
+  color: map-get($colors, secondaryColor);
+  position: relative;
+
+  &.text--special {
+    letter-spacing: 4px;
+  }
+
+  &.text--error {
+    color: map-get($colors, errorColor);
+  }
+
+}
+
+
+.link {
+  &--font-small {
+    font-size: 12px;
+    letter-spacing: 0.31em;
+    color: map-get($colors, primaryColor);
+  }
+
+  &__nav__item {
+    .item {
+      @extend .link--font-small;
+    }
+  }
+}
+
+.item__label {
+  font-weight: 100;
+  text-transform: capitalize;
+}

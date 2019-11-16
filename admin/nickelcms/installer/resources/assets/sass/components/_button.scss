@@ -1,0 +1,141 @@
+.link {
+
+
+  &__button{
+
+    max-width: 100px;
+    margin: 0 auto;
+    position: relative;
+
+    -webkit-transition:height .25s ease, width .25s ease;
+    transition:height .25s ease, width .25s ease;
+
+    color: map-get($colors, darkGreyColor);
+    background-color: map-get($colors, greyColor);
+    padding: 25px 28px;
+    text-align: center;
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    -webkit-border-radius: 50%;
+    display: block;
+    margin: 0 auto;
+    position: relative;
+    z-index: 9999999;
+    cursor: pointer;
+    border : none;
+
+    i.material-icons-outlined {
+      font-size: 30px;
+    }
+
+    &::before, &::after {
+      content: '';
+      position: absolute;
+      height: 100%;
+      width: 100%;
+      left: 0;
+      top: 0;
+      border-radius: 50%;
+      margin: 0 auto;
+    }
+
+    &::after {
+      background-color: map-get($colors, greyColorLighterShade);
+      transform: scale(1.7);
+      -webkit-transform: scale(1.7);
+      z-index: -21;
+    }
+
+    &::before {
+      background-color: map-get($colors, greyColorLightShade);
+      transform: scale(1.356);
+      -webkit-transform: scale(1.356);
+      z-index: -90;
+    }
+
+    &:hover {
+      color: map-get($colors, darkGreyColor);
+    }
+
+  }
+
+  &__button--active{
+
+      color: map-get($colors, lighterColor);
+      background-color: map-get($colors, primaryColor);
+
+      &::after {
+        background-color: rgba(99, 112, 126, 0.06);
+        transform: scale(1.7);
+        -webkit-transform: scale(1.7);
+        -webkit-animation: rippleBig 2s linear 2s infinite;
+        animation: rippleBig 2s linear 2s infinite;
+        z-index: -21;
+      }
+
+      &::before {
+        background-color: rgba(147, 181, 179, 0.45);
+        -webkit-animation: ripple 2s linear infinite;
+        animation: ripple 2s linear infinite;
+        transform: scale(1.356);
+        -webkit-transform: scale(1.356);
+        z-index: -11;
+      }
+
+      &:hover  {
+        color: map-get($colors, lighterColor);
+      }
+
+      &:hover::before, &:hover::after {
+        -webkit-animation-play-state: paused;
+        -moz-animation-play-state: paused;
+        -o-animation-play-state: paused;
+        animation-play-state: paused;
+      }
+
+      .link__identifier {
+        label {
+          cursor:pointer;
+        }
+      }
+  }
+
+  &__identifier {
+    position: absolute;
+    top: 24px;
+    text-align: left;
+    left: 89px;
+    font-size: 12px;
+    text-transform: uppercase;
+    line-height: 18px;
+    color: map-get($colors, primaryColor);
+    letter-spacing: 0.13em;
+    z-index: 9999999;
+  }
+
+}
+
+@-webkit-keyframes ripple{
+  0% {-webkit-transform:scale(1); }
+  35% {-webkit-transform:scale(1.15); opacity:1;}
+  100% {-webkit-transform:scale(1.45); opacity:0;}
+}
+
+@keyframes ripple{
+  0% {-webkit-transform:scale(1); }
+  35% {-webkit-transform:scale(1.15); opacity:1;}
+  100% {-webkit-transform:scale(1.45); opacity:0;}
+}
+
+@-webkit-keyframes rippleBig{
+  0% {-webkit-transform:scale(1); }
+  55% {-webkit-transform:scale(1.55); opacity:1;}
+  100% {-webkit-transform:scale(1.8); opacity:0;}
+}
+
+@keyframes rippleBig{
+  0% {-webkit-transform:scale(1); }
+  55% {-webkit-transform:scale(1.55); opacity:1;}
+  100% {-webkit-transform:scale(1.8); opacity:0;}
+}

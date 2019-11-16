@@ -19,7 +19,7 @@ class RequirementCheckController extends Controller
    */
   public function __construct(RequirementsCheckHelper $checker)
   {
-       $this->middleware("checkinstall");
+      $this->middleware("checkinstall");
       $this->requirements = $checker;
   }
   /**
@@ -32,10 +32,14 @@ class RequirementCheckController extends Controller
       $phpSupportInfo = $this->requirements->checkPHPversion(
           config('installer.core.minPhpVersion')
       );
+
+      $serverVersionInfo = $this->requirements->checkServerVersion();
+
       $requirements = $this->requirements->check(
           config('installer.requirements')
       );
-      return view('nickelcms::pages.requirementscheck', compact('requirements', 'phpSupportInfo'));
+
+      return view('nickelcms::pages.requirementscheck', compact('requirements', 'phpSupportInfo', 'serverVersionInfo'));
   }
 
 }
